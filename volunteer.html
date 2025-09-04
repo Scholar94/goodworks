@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Church Volunteer System</title>
+    <style>
+        :root {
+            --primary-color: #4a6fa5;
+            --secondary-color: #3a5a80;
+            --accent-color: #e67e22;
+            --light-color: #f8f9fa;
+            --dark-color: #343a40;
+            --success-color: #2ecc71;
+        }
+        
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            background-color: var(--light-color);
+            color: var(--dark-color);
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 30px 0;
+            text-align: center;
+            margin-bottom: 30px;
+            border-radius: 8px;
+        }
+        
+        h1 {
+            margin-bottom: 10px;
+        }
+        
+        .ministries {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+        
+        .ministry-card {
+            background-color: white;
+            border-radius: 8px;
+            padding: 25px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .ministry-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .ministry-card h3 {
+            color: var(--primary-color);
+            margin-bottom: 15px;
+            font-size: 1.3rem;
+            border-bottom: 2px solid var(--primary-color);
+            padding-bottom: 10px;
+        }
+        
+        .ministry-meta {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 15px;
+            font-size: 0.9rem;
+            color: #666;
+        }
+        
+        .ministry-date {
+            background-color: #f0f7ff;
+            padding: 5px 10px;
+            border-radius: 4px;
+        }
+        
+        .ministry-needs {
+            margin-bottom: 15px;
+        }
+        
+        .need-tag {
+            display: inline-block;
+            background-color: var(--light-color);
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            margin-right: 5px;
+            margin-bottom: 5px;
+        }
+        
+        .btn {
+            display: inline-block;
+            background-color: var(--primary-color);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: background-color 0.3s;
+            border: none;
+            cursor: pointer;
+            margin-top: auto;
+            align-self: flex-start;
+        }
+        
+        .btn:hover {
+            background-color: var(--secondary-color);
+        }
+        
+        .btn-success {
+            background-color: var(--success-color);
+        }
+        
+        .btn-success:hover {
+            background-color: #27ae60;
+        }
+        
+        .volunteer-form {
+            background-color: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            margin-bottom: 30px;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+        
+        input, select, textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+        
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+        
+        textarea {
+            min-height: 100px;
+            resize: vertical;
+        }
+        
+        .submit-btn {
+            background-color: var(--accent-color);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            font-size: 18px;
+            border-radius: 4px;
+            cursor: pointer;
+            width: 100%;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+        
+        .submit-btn:hover {
+            background-color: #d35400;
+        }
+        
+        .volunteer-list {
+            background-color: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            margin-bottom: 30px;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        
+        th, td {
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        th {
+            background-color: var(--primary-color);
+            color: white;
+        }
+        
+        tr:hover {
+            background-color: #f5f5f5;
+        }
+        
+        .status-pending {
+            color: #e67e22;
+            font-weight: bold;
+        }
+        
+        .status-approved {
+            color: var(--success-color);
+            font-weight: bold;
+        }
+        
+        footer {
+            text-align: center;
+            padding: 20px;
+            color: #666;
+            font-size: 0.9rem;
+            margin-top: 40px;
+            border-top: 1px solid #eee;
+        }
+        
+        @media (max-width: 768px) {
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+            
+            table {
+                display: block;
+                overflow-x: auto;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Church Volunteer System</h1>
+            <p>Serve with your gifts and talents</p>
+        </header>
+        
+        <div class="ministries">
+            <div class="ministry-card">
+                <h3>Worship Team</h3>
+                <div class="ministry-meta">
+                    <span class="ministry-date">Weekly Services</span>
+                    <span>3 volunteers needed</span>
+                </div>
+                <p>Join our worship team as a musician, vocalist, or audio/visual technician.</p>
+                <div class="ministry-needs">
+                    <span class="need-tag">Musicians</span>
+                    <span class="need-tag">Singers</span>
+                    <span class="need-tag">Tech</span>
+                </div>
+                <button class="btn">Serve Here</button>
+            </div>
+            
+            <div class="ministry-card">
+                <h3>Children's Ministry</h3>
+                <div class="ministry-meta">
+                    <span class="ministry-date">Sundays 9am & 11am</span>
+                    <span>5 volunteers needed</span>
+                </div>
+                <p>Help nurture children's faith through teaching, games, and activities.</p>
+                <div class="ministry-needs">
+                    <span class="need-tag">Teachers</span>
+                    <span class="need-tag">Helpers</span>
+                    <span class="need-tag">Nursery</span>
+                </div>
+                <button class="btn">Serve Here</button>
+            </div>
+            
+            <div class="ministry-card">
+                <h3>Ushers & Protocols & Greeters</h3>
+                <div class="ministry-meta">
+                    <span class="ministry-date">Sundays 8:30am-12:30pm</span>
+                    <span>4 volunteers needed</span>
+                </div>
+                <p>Welcome attendees, hand out bulletins, and help people feel at home.</p>
+                <div class="ministry-needs">
+                    <span class="need-tag">Hospitality</span>
+                    <span class="need-tag">First Impressions</span>
+                </div>
+                <button class="btn">Serve Here</button>
+            </div>
+            
+            <div class="ministry-card">
+                <h3>Media Team</h3>
+                <div class="ministry-meta">
+                    <span class="ministry-date"></span>
+                    <span>6 volunteers needed</span>
+                </div>
+                <p>Bringing the church media around.</p>
+                <div class="ministry-needs">
+                    <span class="need-tag">Projection</span>
+                    <span class="need-tag">Camera handling</span>
+                    <span class="need-tag">Mixer tunning</span>
+                </div>
+                <button class="btn">Serve Here</button>
+            </div>
+            
+            <div class="ministry-card">
+                <h3>Youth Ministry</h3>
+                <div class="ministry-meta">
+                    <span class="ministry-date">Fridays 7-9pm</span>
+                    <span>2 volunteers needed</span>
+                </div>
+                <p>Mentor and disciple teenagers through Bible study and fellowship.</p>
+                <div class="ministry-needs">
+                    <span class="need-tag">Mentors</span>
+                    <span class="need-tag">Small Group Leaders</span>
+                </div>
+                <button class="btn">Serve Here</button>
+            </div>
+            
+            <div class="ministry-card">
+                <h3>Facilities Team</h3>
+                <div class="ministry-meta">
+                    <span class="ministry-date">Flexible Schedule</span>
+                    <span>Volunteers always needed</span>
+                </div>
+                <p>Help maintain our church facilities through cleaning, repairs, and setup.</p>
+                <div class="ministry-needs">
+                    <span class="need-tag">Cleaning</span>
+                    <span class="need-tag">Maintenance</span>
+                    <span class="need-tag">Setup</span>
+                </div>
+                <button class="btn">Serve Here</button>
+            </div>
+        </div>
+        
+        <div class="volunteer-form">
+            <h2>Volunteer Application</h2>
+            
+            <form id="volunteerForm">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="firstName">First Name*</label>
+                        <input type="text" id="firstName" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="lastName">Last Name*</label>
+                        <input type="text" id="lastName" required>
+                    </div>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="email">Email*</label>
+                        <input type="email" id="email" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="phone">Phone*</label>
+                        <input type="tel" id="phone" required>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="ministry">Ministry Interest*</label>
+                    <select id="ministry" required>
+                        <option value="">Select ministry</option>
+                        <option value="worship">Worship Team</option>
+                        <option value="children">Children's Ministry</option>
+                        <option value="prayer">Prayer</option>
+                        <option value="media">Media Team</option>
+                        <option value="usher">Ushers & Protocols & Greeters</option>
+                        <option value="sanitation">Sanitation</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="availability">Availability*</label>
+                    <select id="availability" required>
+                        <option value="">Select availability</option>
+                        <option value="sunday-am">Sunday Mornings</option>
+                        <option value="sunday-pm">Sunday Evenings</option>
+                        <option value="weekdays">Weekdays</option>
+                        <option value="flexible">Flexible</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="skills">Skills & Talents</label>
+                    <textarea id="skills" placeholder="What skills or talents would you like to use in ministry?"></textarea>
+                </div>
+                
+                <div class="form-group">
+                    <label for="experience">Previous Ministry Experience</label>
+                    <textarea id="experience" placeholder="Describe any previous church or ministry experience"></textarea>
+                </div>
+                
+                <div class="form-group">
+                    <label for="spiritualGifts">Spiritual Gifts</label>
+                    <textarea id="spiritualGifts" placeholder="If known, list your spiritual gifts (teaching, serving, encouragement, etc.)"></textarea>
+                </div>
+                
+                <div class="form-group">
+                    <label>
+                        <input type="checkbox" id="backgroundCheck" required> I agree to a background check if required for this ministry*
+                    </label>
+                </div>
+                
+                <div class="form-group">
+                    <label>
+                        <input type="checkbox" id="commitment" required> I commit to serve faithfully for at least 6 months*
+                    </label>
+                </div>
+                
+                <div class="form-group">
+                    <label for="prayerRequest">Prayer Request (Optional)</label>
+                    <textarea id="prayerRequest" placeholder="How can we pray for you as you consider serving?"></textarea>
+                </div>
+                
+                <button type="submit" class="submit-btn">Submit Application</button>
+            </form>
+        </div>
+        
+        <div class="volunteer-list">
+            <h2>Volunteer Schedule</h2>
+            <p>View upcoming serving opportunities and your commitments</p>
+            
+            <table>
+                <thead>
+                    <tr>
+                        <th>Date</th>
+                        <th>Ministry</th>
+                        <th>Time</th>
+                        <th>Role</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Sun, Jun 12</td>
+                        <td>Greeting Team</td>
+                        <td>8:30am-10:00am</td>
+                        <td>Front Door Greeter</td>
+                        <td class="status-approved">Confirmed</td>
+                    </tr>
+                    <tr>
+                        <td>Sun, Jun 19</td>
+                        <td>Greeting Team</td>
+                        <td>8:30am-10:00am</td>
+                        <td>Front Door Greeter</td>
+                        <td class="status-approved">Confirmed</td>
+                    </tr>
+                    <tr>
+                        <td>Wed, Jun 15</td>
+                        <td>Food Pantry</td>
+                        <td>2:00pm-5:00pm</td>
+                        <td>Stocking Shelves</td>
+                        <td class="status-pending">Awaiting Approval</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        
+        <footer>
+            <p>"Each of you should use whatever gift you have received to serve others, as faithful stewards of God's grace in its various forms." - 1 Peter 4:10</p>
+        </footer>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Ministry card buttons
+            document.querySelectorAll('.ministry-card .btn').forEach(button => {
+                button.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const ministryTitle = this.closest('.ministry-card').querySelector('h3').textContent;
+                    document.getElementById('ministry').value = ministryTitle.toLowerCase().includes('worship') ? 'worship' :
+                        ministryTitle.toLowerCase().includes('children') ? 'children' :
+                        ministryTitle.toLowerCase().includes('greet') ? 'greeting' :
+                        ministryTitle.toLowerCase().includes('food') ? 'food' :
+                        ministryTitle.toLowerCase().includes('youth') ? 'youth' :
+                        ministryTitle.toLowerCase().includes('facilit') ? 'facilities' : 'other';
+                    
+                    alert(`Thank you for your interest in the ${ministryTitle}. Please complete the application form below.`);
+                    document.getElementById('volunteerForm').scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                });
+            });
+            
+            // Form submission
+            document.getElementById('volunteerForm').addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                // Validate form
+                const firstName = document.getElementById('firstName').value.trim();
+                const lastName = document.getElementById('lastName').value.trim();
+                const email = document.getElementById('email').value.trim();
+                const phone = document.getElementById('phone').value.trim();
+                const ministry = document.getElementById('ministry').value;
+                const availability = document.getElementById('availability').value;
+                const backgroundCheck = document.getElementById('backgroundCheck').checked;
+                const commitment = document.getElementById('commitment').checked;
+                
+                if (!firstName || !lastName || !email || !phone || !ministry || !availability || !backgroundCheck || !commitment) {
+                    alert('Please fill in all required fields');
+                    return;
+                }
+                
+                // In a real implementation, you would send this data to a server
+                const volunteerData = {
+                    firstName,
+                    lastName,
+                    email,
+                    phone,
+                    ministry,
+                    availability,
+                    skills: document.getElementById('skills').value.trim(),
+                    experience: document.getElementById('experience').value.trim(),
+                    spiritualGifts: document.getElementById('spiritualGifts').value.trim(),
+                    prayerRequest: document.getElementById('prayerRequest').value.trim()
+                };
+                
+                console.log('Volunteer data:', volunteerData);
+                
+                // Show success message
+                alert(`Thank you for your application, ${firstName}! Our ministry leader will contact you soon.`);
+                
+                // Reset form
+                this.reset();
+            });
+        });
+    </script>
+</body>
+</html>
