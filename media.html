@@ -1,0 +1,569 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CAC GOODWORKS ASSEMBLY MEDIA GALLERY</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #333;
+            line-height: 1.6;
+            min-height: 100vh;
+            padding-bottom: 60px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        header {
+            background: rgba(255, 255, 255, 0.9);
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+            padding: 20px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .logo-icon {
+            font-size: 2.5rem;
+            color: #4b6cb7;
+        }
+
+        .logo-text {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #2c3e50;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 25px;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #2c3e50;
+            font-weight: 600;
+            padding: 8px 15px;
+            border-radius: 20px;
+            transition: all 0.3s ease;
+        }
+
+        nav a:hover, nav a.active {
+            background: #4b6cb7;
+            color: white;
+        }
+
+        .hero {
+            text-align: center;
+            padding: 60px 0;
+            color: white;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 30px;
+            opacity: 0.9;
+        }
+
+        .btn {
+            display: inline-block;
+            background: white;
+            color: #4b6cb7;
+            padding: 12px 30px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .filters {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin: 30px 0;
+        }
+
+        .filter-btn {
+            background: rgba(255, 255, 255, 0.9);
+            border: none;
+            padding: 10px 25px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .filter-btn:hover {
+            background: #4b6cb7;
+            color: white;
+        }
+
+        .filter-btn.active {
+            background: #4b6cb7;
+            color: white;
+        }
+
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 25px;
+            margin-top: 40px;
+        }
+
+        .gallery-item {
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease;
+            cursor: pointer;
+            position: relative;
+        }
+
+        .gallery-item:hover {
+            transform: translateY(-10px);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.5s ease;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+
+        .item-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
+            padding: 20px;
+            color: white;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .gallery-item:hover .item-overlay {
+            opacity: 1;
+        }
+
+        .item-title {
+            font-weight: 700;
+            margin-bottom: 5px;
+            font-size: 1.2rem;
+        }
+
+        .item-category {
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+
+        .lightbox {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .lightbox-content {
+            max-width: 90%;
+            max-height: 90%;
+            position: relative;
+        }
+
+        .lightbox-content img {
+            max-width: 100%;
+            max-height: 80vh;
+            border-radius: 8px;
+            box-shadow: 0 5px 25px rgba(0, 0, 0, 0.4);
+        }
+
+        .lightbox-caption {
+            color: white;
+            text-align: center;
+            margin-top: 15px;
+            font-size: 1.2rem;
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            color: white;
+            font-size: 2rem;
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+
+        .close-btn:hover {
+            color: #4b6cb7;
+        }
+
+        .prev-btn, .next-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            color: white;
+            font-size: 2rem;
+            cursor: pointer;
+            background: rgba(0, 0, 0, 0.5);
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: background 0.3s ease;
+        }
+
+        .prev-btn:hover, .next-btn:hover {
+            background: rgba(0, 0, 0, 0.8);
+        }
+
+        .prev-btn {
+            left: 20px;
+        }
+
+        .next-btn {
+            right: 20px;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 60px;
+            color: white;
+            opacity: 0.8;
+        }
+
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                gap: 20px;
+            }
+
+            nav ul {
+                gap: 10px;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+
+            .gallery {
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+                gap: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <div class="logo-icon"><i class="fas fa-church"></i></div>
+                    <div class="logo-text">CAC Goodworks Assembly</div>
+                </div>
+                <nav>
+                    <ul>
+                        <li><a href="#" class="active">Gallery</a></li>
+                        <li><a href="#">Sermons</a></li>
+                        <li><a href="#">Events</a></li>
+                        <li><a href="#">Ministries</a></li>
+                        <li><a href="#">Contact</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <div class="hero">
+        <div class="container">
+            <h1>CAC Goodworks Assembly Media Gallery</h1>
+            <p>Browse through our collection of worship services, community events, and ministry activities</p>
+            <a href="#gallery" class="btn">View Gallery</a>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="filters">
+            <button class="filter-btn active" data-filter="all">All Media</button>
+            <button class="filter-btn" data-filter="worship">Worship Services</button>
+            <button class="filter-btn" data-filter="events">Church Events</button>
+            <button class="filter-btn" data-filter="community">Community</button>
+            <button class="filter-btn" data-filter="ministry">Ministries</button>
+        </div>
+
+        <div class="gallery" id="gallery">
+            <!-- Worship Services -->
+            <div class="gallery-item" data-category="worship">
+                <img src="wall.jpg" alt="Sunday Service">
+                <div class="item-overlay">
+                    <div class="item-title">Sunday Worship</div>
+                    <div class="item-category">Worship Service</div>
+                </div>
+            </div>
+
+            <div class="gallery-item" data-category="worship">
+                <video src="preachig.mp4" autoplay controls width="300px" height="290px" alt="Choir Singing">
+                <div class="item-overlay">
+                    <div class="item-title">Choir Performance</div>
+                    <div class="item-category">Worship Service</div>
+                </div>
+            </div>
+
+            <!-- Church Events -->
+            <div class="gallery-item" data-category="events">
+                <video src="prayer.mp4" autoplay controls width="300px" height="290px">
+                <div class="item-overlay">
+                    <div class="item-title">Baptism Service</div>
+                    <div class="item-category">Church Event</div>
+                </div>
+            </div>
+
+            <div class="gallery-item" data-category="events">
+                <img src="https://images.unsplash.com/photo-1511795409834-ef04bbd61622?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80" alt="Christmas Event">
+                <div class="item-overlay">
+                    <div class="item-title">Christmas Celebration</div>
+                    <div class="item-category">Church Event</div>
+                </div>
+            </div>
+
+            <!-- Community -->
+            <div class="gallery-item" data-category="community">
+                <img src="https://images.unsplash.com/photo-1596363505726-2c5e5b5c67a7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80" alt="Community Dinner">
+                <div class="item-overlay">
+                    <div class="item-title">Community Dinner</div>
+                    <div class="item-category">Community</div>
+                </div>
+            </div>
+
+            <div class="gallery-item" data-category="community">
+                <img src="https://images.unsplash.com/photo-1475721027785-f74eccf877e2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80" alt="Outdoor Gathering">
+                <div class="item-overlay">
+                    <div class="item-title">Church Picnic</div>
+                    <div class="item-category">Community</div>
+                </div>
+            </div>
+
+            <!-- Ministries -->
+            <div class="gallery-item" data-category="ministry">
+                <img src="https://images.unsplash.com/photo-1515895309288-a3815ab7cf81?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80" alt="Youth Ministry">
+                <div class="item-overlay">
+                    <div class="item-title">Youth Ministry</div>
+                    <div class="item-category">Ministry</div>
+                </div>
+            </div>
+
+            <div class="gallery-item" data-category="ministry">
+                <img src="https://images.unsplash.com/photo-1577896851231-70ef18861754?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80" alt="Children's Ministry">
+                <div class="item-overlay">
+                    <div class="item-title">Children's Ministry</div>
+                    <div class="item-category">Ministry</div>
+                </div>
+            </div>
+
+            <!-- Additional Items -->
+            <div class="gallery-item" data-category="worship">
+                <img src="https://images.unsplash.com/photo-1416879595882-3373a0480b5b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80" alt="Prayer Service">
+                <div class="item-overlay">
+                    <div class="item-title">Prayer Night</div>
+                    <div class="item-category">Worship Service</div>
+                </div>
+            </div>
+
+            <div class="gallery-item" data-category="events">
+                <img src="https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80" alt="Easter Service">
+                <div class="item-overlay">
+                    <div class="item-title">Easter Service</div>
+                    <div class="item-category">Church Event</div>
+                </div>
+            </div>
+
+            <div class="gallery-item" data-category="community">
+                <img src="https://images.unsplash.com/photo-1511632765486-a01980e01a18?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80" alt="Volunteering">
+                <div class="item-overlay">
+                    <div class="item-title">Community Service</div>
+                    <div class="item-category">Community</div>
+                </div>
+            </div>
+
+            <div class="gallery-item" data-category="ministry">
+                <img src="https://images.unsplash.com/photo-1577733964794-fb3cde6c6f5f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80" alt="Mission Trip">
+                <div class="item-overlay">
+                    <div class="item-title">Mission Trip</div>
+                    <div class="item-category">Ministry</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Lightbox -->
+    <div class="lightbox" id="lightbox">
+        <div class="close-btn" id="close-btn">
+            <i class="fas fa-times"></i>
+        </div>
+        <div class="prev-btn" id="prev-btn">
+            <i class="fas fa-chevron-left"></i>
+        </div>
+        <div class="next-btn" id="next-btn">
+            <i class="fas fa-chevron-right"></i>
+        </div>
+        <div class="lightbox-content">
+            <img src="" alt="" id="lightbox-img">
+            <div class="lightbox-caption" id="lightbox-caption"></div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 CAC Goodworks Assembly. All Rights Reserved.</p>
+            <p>Sharing God's Love Through Community and Worship</p>
+        </div>
+    </footer>
+
+    <script>
+        // Filter functionality
+        const filterButtons = document.querySelectorAll('.filter-btn');
+        const galleryItems = document.querySelectorAll('.gallery-item');
+
+        filterButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                // Remove active class from all buttons
+                filterButtons.forEach(btn => btn.classList.remove('active'));
+                
+                // Add active class to clicked button
+                button.classList.add('active');
+                
+                const filter = button.getAttribute('data-filter');
+                
+                galleryItems.forEach(item => {
+                    if (filter === 'all' || item.getAttribute('data-category') === filter) {
+                        item.style.display = 'block';
+                    } else {
+                        item.style.display = 'none';
+                    }
+                });
+            });
+        });
+
+        // Lightbox functionality
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImg = document.getElementById('lightbox-img');
+        const lightboxCaption = document.getElementById('lightbox-caption');
+        const closeBtn = document.getElementById('close-btn');
+        const prevBtn = document.getElementById('prev-btn');
+        const nextBtn = document.getElementById('next-btn');
+
+        let currentIndex = 0;
+        const items = Array.from(galleryItems);
+
+        // Open lightbox
+        galleryItems.forEach((item, index) => {
+            item.addEventListener('click', () => {
+                currentIndex = index;
+                updateLightbox();
+                lightbox.style.display = 'flex';
+                document.body.style.overflow = 'hidden'; // Prevent scrolling
+            });
+        });
+
+        // Close lightbox
+        closeBtn.addEventListener('click', () => {
+            lightbox.style.display = 'none';
+            document.body.style.overflow = 'auto'; // Enable scrolling
+        });
+
+        // Navigate lightbox
+        prevBtn.addEventListener('click', () => {
+            currentIndex = (currentIndex - 1 + items.length) % items.length;
+            updateLightbox();
+        });
+
+        nextBtn.addEventListener('click', () => {
+            currentIndex = (currentIndex + 1) % items.length;
+            updateLightbox();
+        });
+
+        // Keyboard navigation
+        document.addEventListener('keydown', (e) => {
+            if (lightbox.style.display === 'flex') {
+                if (e.key === 'Escape') {
+                    lightbox.style.display = 'none';
+                    document.body.style.overflow = 'auto';
+                } else if (e.key === 'ArrowLeft') {
+                    currentIndex = (currentIndex - 1 + items.length) % items.length;
+                    updateLightbox();
+                } else if (e.key === 'ArrowRight') {
+                    currentIndex = (currentIndex + 1) % items.length;
+                    updateLightbox();
+                }
+            }
+        });
+
+        // Update lightbox content
+        function updateLightbox() {
+            const item = items[currentIndex];
+            const img = item.querySelector('img');
+            const title = item.querySelector('.item-title').textContent;
+            const category = item.querySelector('.item-category').textContent;
+            
+            lightboxImg.src = img.src;
+            lightboxCaption.textContent = `${title} - ${category}`;
+        }
+    </script>
+</body>
+</html>

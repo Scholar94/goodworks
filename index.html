@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CAC GOODWORKS ASSEMBLY</title>
+    <style>
+        /* Base styles that load immediately */
+        :root {
+            --primary-color: #4a6b9b;
+            --secondary-color: #e8b959;
+            --light-color: #f8f9fa;
+            --dark-color: #343a40;
+            --success-color: #28a745;
+            --error-color: #dc3545;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--dark-color);
+            background-color: var(--light-color);
+        }
+        
+        /* Critical above-the-fold styles */
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 5%;
+            background-color: white;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        #main-content {
+            margin-top: 80px;
+            min-height: calc(100vh - 180px);
+            padding: 2rem 5%;
+        }
+    </style>
+    <!-- Deferred stylesheet -->
+    <link rel="stylesheet" href="main.css" media="print" onload="this.media='all'">
+    <noscript><link rel="stylesheet" href="main.css"></noscript>
+    <!-- Inline SVG for icons -->
+    <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+        <symbol id="icon-menu" viewBox="0 0 24 24">
+            <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/>
+        </symbol>
+        <symbol id="icon-close" viewBox="0 0 24 24">
+            <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/>
+        </symbol>
+    </svg>
+</head>
+<body>
+    <!-- Header/Navigation -->
+    <header class="header">
+        <div class="logo">
+            <img src="photo.jpg" alt="Church Logo" width="50" height="50">
+            <h1>CAC GOODWORKS ASSEMBLY</h1>
+        </div>
+        <nav class="navbar">
+            <button class="mobile-menu-close" aria-label="Close menu">
+                <svg class="icon"><use xlink:href="#icon-close"></use></svg>
+            </button>
+            <ul>
+                <li><a href="church.html">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#ministries">Ministries</a></li>
+                <li><a href="#events">Events</a></li>
+                <li><a href="#sermons">Sermons</a></li>
+                <li><a href="media.html">Media</a></li>
+                <li><a href="poll.html">Feedback</a></li>
+                <li><a href="decision.html">Decision</a></li>
+            </ul>
+        </nav>
+        <button class="mobile-menu-btn" aria-label="Open menu">
+            <svg class="icon"><use xlink:href="#icon-menu"></use></svg>
+        </button>
+    </header>
+
+    <!-- Main Content -->
+    <main id="main-content">
+        <!-- Hero Section -->
+       <div><video src="ayaba.mp4" width="910px" controls autoplay alt=""></div>
+        <section class="hero">
+            <div class="hero-content">
+                <h2>Welcome to CAC GOODWORKS ASSEMBLY</h2>
+
+                <p class="subtitle">Where we build the Joseph, Daniel & Esthers of our time</p>
+                <div class="hero-btns">
+                    <a href="#about" class="btn btn-primary">Learn More</a>
+                    <a href="#events" class="btn btn-secondary">Upcoming Events</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section id="about" class="section">
+            <h2 class="section-title">About Our Church</h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <p>CAC GOODWORKS ASSEMBLY has been serving our community since 1999. We are a family of believers committed to sharing the love of Christ through worship, fellowship, and service.</p>
+                    <p>This is a church that calls people to seek God's manifest presence, perfecting the saints towards Christ like nature and creating a friendly atmosphere for people to worship,
+                        locate, and achieve their God giving destiny....</p>
+                <div class="about-image">
+                    <img src="building.jpg" alt="Our church building" loading="lazy">
+                </div>
+            </div>
+        </section>
+
+        <!-- Ministries Section -->
+        <section id="ministries" class="section section-dark">
+            <h2 class="section-title">Our Ministries</h2>
+            <div class="ministries-grid">
+                <div class="ministry-card">
+                    <div class="ministry-icon">👨‍👩‍👧‍👦</div>
+                    <h3>Family Ministry</h3>
+                    <p>Strengthening families through biblical teaching and fellowship.</p>
+                </div>
+                <div class="ministry-card">
+                    <div class="ministry-icon">🧒</div>
+                    <h3>Children's Ministry</h3>
+                    <p>Teaching kids about Jesus in fun and engaging ways.</p>
+                </div>
+                <div class="ministry-card">
+                    <div class="ministry-icon">🎸</div>
+                    <h3>Worship Arts</h3>
+                    <p>Using creative arts to glorify God and lead others in worship.</p>
+                </div>
+                <div class="ministry-card">
+                    <div class="ministry-icon">🌎</div>
+                    <h3>Missions</h3>
+                    <p>Supporting local and global missions to spread the Gospel.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sermons Section -->
+        <section id="sermons" class="section">
+            <h2 class="section-title">Recent Sermons</h2>
+            <div class="sermons-grid">
+                <div class="sermon-card">
+                    <div class="sermon-image">
+                        <img src="wall.jpg" alt="Sermon thumbnail" loading="lazy">
+                    </div>
+                    <div class="sermon-info">
+                        <h3>I AM A WALL AND NOT A DOOR</h3>
+                        <p class="sermon-date">Aug 31, 2025</p>
+                        <p class="sermon-speaker">Pastor Akin Akinbajo</p>
+                        <div class="sermon-actions">
+                            <audio controls autoplay loop muted>
+                                <source src="I AM A WALL AND NOT A DOOR.mp3">
+                       
+                                 <button class="btn btn-outline play-sermon">Listen
+                                
+                            </button></audio>
+                            <a href="I AM A WALL AND NOT A DOOR.mp3" download="I AM A WALL AND NOT A DOOR.mp3">
+                            <button class="btn btn-outline download-sermon">Download</button></a>
+                        </div>
+                    </div>
+                </div>
+                <!-- Additional sermon cards would go here -->
+            </div>
+            <div class="section-footer">
+                <a href="https://www.youtube.com/results?search_query=cac+goodworks" class="btn btn-primary">View All Sermons</a>
+            </div>
+        </section>
+
+        <!-- Events Section -->
+        <section id="events" class="section section-dark">
+            <h2 class="section-title">Upcoming Events</h2>
+            <div class="events-list">
+                <div class="event-card">
+                    <div class="event-date">
+                        <span class="event-day">12</span>
+                        <span class="event-month">Jun</span>
+                    </div>
+                    <div class="event-details">
+                        <h3>Sunday Service</h3>
+                        <p class="event-time">12-June-2025, 6:00 AM</p>
+                        <p class="event-location">Main Sanctuary</p>
+                    </div>
+                    <button class="btn btn-outline event-rsvp">RSVP</button>
+                </div>
+                <!-- Additional event cards would go here -->
+            </div>
+            <div class="section-footer">
+                <a href="https://docs.google.com/spreadsheets/d/1G3PXm3iy8otBCsjpuqiR3Nssd7N1bh68-VrFGNBLHlo/edit?usp=drivesdk" class="btn btn-secondary">View Calendar</a>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="section">
+            <h2 class="section-title">Contact Us</h2>
+            <div class="contact-container">
+                <div class="contact-info">
+                    <h3>Visit Us</h3>
+                    <address>
+                        Obafemi Awolowo<br>
+                        Road, along black and white gate <br>
+                        Molipa Express Way
+                    </address>
+                    <h3>Service Times</h3>
+                    <p>Sunday: 8:15 am<br>
+                    Wednesday Bible Study: 5:00pm</p>
+                    <h3>Contact Information</h3>
+                    <p>Phone: +2348037188012<br>
+                    Email: cacgoodworks@gmail.com</p>
+                </div>
+                <form class="contact-form" id="contactForm">
+                    <div class="form-group">
+                        <label for="name">Name</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="subject">Subject</label>
+                        <input type="text" id="subject" name="subject" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Message</label>
+                        <textarea id="message" name="message" rows="5" required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Send Message</button>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="church.html">Home</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#ministries">Ministries</a></li>
+                    <li><a href="#sermons">Sermons</a></li>
+                    <li><a href="#events">Events</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Resources</h3>
+                <ul>
+                    <li><a href="biblestudy.html">Bible Study Tools</a></li>
+                    <li><a href="prayer.html">Prayer Requests</a></li>
+                    <li><a href="giving.html">Online Giving</a></li>
+                    <li><a href="volunteer.html">Volunteer</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Connect With Us</h3>
+                <div class="social-links">
+                    <a href="https://www.facebook.com/cacgoodworks" aria-label="Facebook">FB
+                        <svg class="social-icon"><use xlink:href="#icon-facebook"></use></svg>
+                    </a> 
+                    <br>
+                
+                    <a href="https://www.instagram.com/cacgoodworksassembly?igsh=bXB0Z3ltd2w1MTdq&utm_source=qr" aria-label="Instagram">IG
+                        
+                            <i class="fas fa-instagram"></i></a>
+                    </a><br>
+                    <a href="https://www.youtube.com/results?search_query=cac+goodworks" aria-label="YouTube">YouTube
+                        <svg class="social-icon"><use xlink:href="#icon-youtube"></use></svg>
+                    </a><br>
+                    <a href="https://www.tiktok.com/@cac.good.works.as?_t=ZS-8zPnlFvhSGi&_r=1" aria-label="tiktok">Tiktok
+                        <svg class="social-icon"><use xlink:href="#icon-tiktok"></use></svg>
+                    </a>
+                </div>
+                <div class="newsletter-signup">
+                    <h4>Stay Updated</h4>
+                    <form id="newsletterForm">
+                        <input type="email" placeholder="Your email" required>
+                        <button type="submit" class="btn btn-small">Subscribe</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 CAC GOODWORKS ASSEMBLY. All Rights Reserved.</p>
+            <div class="footer-links">
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms of Use</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        // Load CSS asynchronously
+        function loadCSS(href) {
+            const link = document.createElement('link');
+            link.href = href;
+            link.rel = 'stylesheet';
+            document.head.appendChild(link);
+        }
+        
+        // Load main CSS if not already loaded
+        if (!document.querySelector('link[href="main.css"]')) {
+            loadCSS('main.css');
+        }
+    </script>
+    <script src="main.js" defer></script>
+</body>
+</html>

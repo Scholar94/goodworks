@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Calendar</title>
+    <style>
+        /* Calendar Styles */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        
+        .calendar-container {
+            max-width: 600px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            padding: 20px;
+        }
+        
+        .calendar-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        
+        .calendar-title {
+            font-size: 1.5rem;
+            color: #333;
+        }
+        
+        .calendar-nav {
+            display: flex;
+            gap: 10px;
+        }
+        
+        .calendar-nav button {
+            background: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            padding: 5px 10px;
+            cursor: pointer;
+        }
+        
+        .calendar-weekdays {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            text-align: center;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        
+        .calendar-days {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 5px;
+        }
+        
+        .calendar-day {
+            min-height: 60px;
+            padding: 5px;
+            border-radius: 5px;
+            background: #f9f9f9;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .day-number {
+            align-self: flex-end;
+            font-weight: bold;
+        }
+        
+        .today {
+            background: #e3f2fd;
+            border: 1px solid #2196F3;
+        }
+        
+        .other-month {
+            color: #aaa;
+            background: #eee;
+        }
+        
+        .has-event {
+            position: relative;
+        }
+        
+        .has-event::after {
+            content: '';
+            position: absolute;
+            top: 5px;
+            right: 5px;
+            width: 8px;
+            height: 8px;
+            background: #f44336;
+            border-radius: 50%;
+        }
+        
+        /* Event Form Styles */
+        .event-form {
+            margin-top: 20px;
+            padding: 20px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        
+        .event-form h3 {
+            margin-top: 0;
+        }
+        
+        .form-group {
+            margin-bottom: 15px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        
+        .form-group input, 
+        .form-group textarea {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        
+        .form-group textarea {
+            min-height: 60px;
+        }
+        
+        .submit-btn {
+            background: #4CAF50;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        
+        /* Events List Styles */
+        .events-list {
+            margin-top: 20px;
+        }
+        
+        .event-item {
+            padding: 10px;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .event-title {
+            font-weight: bold;
+        }
+        
+        .event-date {
+            color: #666;
+            font-size: 0.9em;
+        }
+        
+        .delete-btn {
+            color: #f44336;
+            background: none;
+            border: none;
+            cursor: pointer;
+            float: right;
+        }
+    </style>
+</head>
+<body>
+    <div class="calendar-container">
+        <div class="calendar-header">
+            <h2 class="calendar-title" id="month-year">Month Year</h2>
+            <div class="calendar-nav">
+                <button id="prev-month">Previous</button>
+                <button id="next-month">Next</button>
+            </div>
+        </div>
+        
+        <div class="calendar-weekdays">
+            <div>Sun</div>
+            <div>Mon</div>
+            <div>Tue</div>
+            <div>Wed</div>
+            <div>Thu</div>
+            <div>Fri</div>
+            <div>Sat</div>
+        </div>
+        
+        <div class="calendar-days" id="calendar-days">
+            <!-- Days will be populated by JavaScript -->
+        </div>
+    </div>
+    
+    <div class="event-form">
+        <h3>Add New Event</h3>
+        <form id="add-event-form">
+            <div class="form-group">
+                <label for="event-date">Date:</label>
+                <input type="date" id="event-date" required>
+            </div>
+            <div class="form-group">
+                <label for="event-title">Title:</label>
+                <input type="text" id="event-title" required>
+            </div>
+            <div class="form-group">
+                <label for="event-description">Description:</label>
+                <textarea id="event-description"></textarea>
+            </div>
+            <button type="submit" class="submit-btn">Add Event</button>
+        </form>
+    </div>
+    
+    <div class="events-list" id="events-list">
+        <h3>Scheduled Events</h3>
+        <!-- Events will be populated by JavaScript -->
+    </div>
+
+    <script>
+        // Calendar functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            // DOM elements
+            const calendarDaysEl = document.getElementById('calendar-days');
+            const monthYearEl = document.getElementById('month-year');
+            const prevMonthBtn = document.getElementById('prev-month');
+            const nextMonthBtn = document.getElementById('next-month');
+            const eventForm = document.getElementById('add-event-form');
+            const eventDateInput = document.getElementById('event-date');
+            const eventTitleInput = document.getElementById('event-title');
+            const eventDescInput = document.getElementById('event-description');
+            const eventsListEl = document.getElementById('events-list');
+            
+            // Current date
+            let currentDate = new Date();
+            
+            // Events array
+            let events = JSON.parse(localStorage.getItem('calendarEvents')) || [];
+            
+            // Initialize calendar
+            renderCalendar();
+            renderEvents();
+            
+            // Event listeners
+            prevMonthBtn.addEventListener('click', goToPreviousMonth);
+            nextMonthBtn.addEventListener('click', goToNextMonth);
+            eventForm.addEventListener('submit', addEvent);
+            
+            // Set today's date as default in form
+            const today = new Date();
+            eventDateInput.valueAsDate = today;
+            
+            // Calendar functions
+            function renderCalendar() {
+                // Clear previous days
+                calendarDaysEl.innerHTML = '';
+                
+                // Set month and year in header
+                monthYearEl.textContent = currentDate.toLocaleDateString('en-US', { 
+                    month: 'long', 
+                    year: 'numeric' 
+                });
+                
+                // Get first day of month and total days
+                const firstDay = new Date(
+                    currentDate.getFullYear(), 
+                    currentDate.getMonth(), 
+                    1
+                );
+                const lastDay = new Date(
+                    currentDate.getFullYear(), 
+                    currentDate.getMonth() + 1, 
+                    0
+                );
+                const totalDays = lastDay.getDate();
+                const firstDayIndex = firstDay.getDay();
+                
+                // Get today's date for highlighting
+                const today = new Date();
+                const isCurrentMonth = 
+                    currentDate.getMonth() === today.getMonth() && 
+                    currentDate.getFullYear() === today.getFullYear();
+                
+                // Add empty cells for days from previous month
+                for (let i = 0; i < firstDayIndex; i++) {
+                    const dayEl = document.createElement('div');
+                    dayEl.classList.add('calendar-day', 'other-month');
+                    const prevMonthLastDay = new Date(
+                        currentDate.getFullYear(), 
+                        currentDate.getMonth(), 
+                        0
+                    ).getDate();
+                    dayEl.innerHTML = `<span class="day-number">${prevMonthLastDay - firstDayIndex + i + 1}</span>`;
+                    calendarDaysEl.appendChild(dayEl);
+                }
+                
+                // Add cells for current month days
+                for (let i = 1; i <= totalDays; i++) {
+                    const dayEl = document.createElement('div');
+                    dayEl.classList.add('calendar-day');
+                    
+                    // Highlight today
+                    if (isCurrentMonth && i === today.getDate()) {
+                        dayEl.classList.add('today');
+                    }
+                    
+                    // Add day number
+                    dayEl.innerHTML = `<span class="day-number">${i}</span>`;
+                    
+                    // Check if day has events
+                    const dayEvents = getEventsForDay(
+                        currentDate.getFullYear(),
+                        currentDate.getMonth(),
+                        i
+                    );
+                    
+                    if (dayEvents.length > 0) {
+                        dayEl.classList.add('has-event');
+                    }
+                    
+                    // Add click event to select date
+                    dayEl.addEventListener('click', function() {
+                        const clickedDate = new Date(
+                            currentDate.getFullYear(),
+                            currentDate.getMonth(),
+                            i
+                        );
+                        eventDateInput.valueAsDate = clickedDate;
+                    });
+                    
+                    calendarDaysEl.appendChild(dayEl);
+                }
+                
+                // Calculate total cells added (empty + days)
+                const totalCells = firstDayIndex + totalDays;
+                
+                // Add empty cells to complete the grid (6 rows x 7 days = 42 cells)
+                if (totalCells < 42) {
+                    for (let i = totalCells; i < 42; i++) {
+                        const dayEl = document.createElement('div');
+                        dayEl.classList.add('calendar-day', 'other-month');
+                        dayEl.innerHTML = `<span class="day-number">${i - totalCells + 1}</span>`;
+                        calendarDaysEl.appendChild(dayEl);
+                    }
+                }
+            }
+            
+            function getEventsForDay(year, month, day) {
+                return events.filter(event => {
+                    const eventDate = new Date(event.date);
+                    return (
+                        eventDate.getFullYear() === year &&
+                        eventDate.getMonth() === month &&
+                        eventDate.getDate() === day
+                    );
+                });
+            }
+            
+            function goToPreviousMonth() {
+                currentDate = new Date(
+                    currentDate.getFullYear(),
+                    currentDate.getMonth() - 1,
+                    1
+                );
+                renderCalendar();
+            }
+            
+            function goToNextMonth() {
+                currentDate = new Date(
+                    currentDate.getFullYear(),
+                    currentDate.getMonth() + 1,
+                    1
+                );
+                renderCalendar();
+            }
+            
+            // Event functions
+            function addEvent(e) {
+                e.preventDefault();
+                
+                const newEvent = {
+                    id: Date.now().toString(),
+                    date: eventDateInput.value,
+                    title: eventTitleInput.value.trim(),
+                    description: eventDescInput.value.trim()
+                };
+                
+                events.push(newEvent);
+                saveEvents();
+                
+                // Reset form
+                eventTitleInput.value = '';
+                eventDescInput.value = '';
+                eventDateInput.valueAsDate = new Date();
+                
+                // Update UI
+                renderCalendar();
+                renderEvents();
+            }
+            
+            function renderEvents() {
+                // Clear existing events
+                eventsListEl.innerHTML = '';
+                
+                // Sort events by date (newest first)
+                const sortedEvents = [...events].sort((a, b) => {
+                    return new Date(a.date) - new Date(b.date);
+                });
+                
+                if (sortedEvents.length === 0) {
+                    eventsListEl.innerHTML = '<p>No events scheduled.</p>';
+                    return;
+                }
+                
+                sortedEvents.forEach(event => {
+                    const eventEl = document.createElement('div');
+                    eventEl.classList.add('event-item');
+                    eventEl.innerHTML = `
+                        <div class="event-title">${event.title}</div>
+                        <div class="event-date">${formatDate(event.date)}</div>
+                        ${event.description ? `<p>${event.description}</p>` : ''}
+                        <button class="delete-btn" data-id="${event.id}">Delete</button>
+                    `;
+                    eventsListEl.appendChild(eventEl);
+                });
+                
+                // Add delete event listeners
+                document.querySelectorAll('.delete-btn').forEach(button => {
+                    button.addEventListener('click', function() {
+                        const eventId = this.getAttribute('data-id');
+                        deleteEvent(eventId);
+                    });
+                });
+            }
+            
+            function deleteEvent(eventId) {
+                events = events.filter(event => event.id !== eventId);
+                saveEvents();
+                renderCalendar();
+                renderEvents();
+            }
+            
+            function saveEvents() {
+                localStorage.setItem('calendarEvents', JSON.stringify(events));
+            }
+            
+            function formatDate(dateString) {
+                const options = { 
+                    weekday: 'long', 
+                    year: 'numeric', 
+                    month: 'long', 
+                    day: 'numeric' 
+                };
+                return new Date(dateString).toLocaleDateString('en-US', options);
+            }
+        });
+    </script>
+</body>
+</html>

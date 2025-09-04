@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prayer Request Form</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f5f5;
+            color: #333;
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding: 20px 0;
+            background-color: #4a6fa5;
+            color: white;
+            border-radius: 5px;
+        }
+        
+        h1 {
+            margin: 0;
+        }
+        
+        .prayer-form {
+            background-color: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+        }
+        
+        input[type="text"],
+        input[type="email"],
+        textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 16px;
+            font-family: inherit;
+        }
+        
+        textarea {
+            min-height: 150px;
+            resize: vertical;
+        }
+        
+        .submit-btn {
+            background-color: #4a6fa5;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            font-size: 16px;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        
+        .submit-btn:hover {
+            background-color: #3a5a80;
+        }
+        
+        .prayer-requests {
+            margin-top: 40px;
+            background-color: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .request-item {
+            padding: 15px;
+            border-bottom: 1px solid #eee;
+            margin-bottom: 15px;
+        }
+        
+        .request-item:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+        }
+        
+        .request-name {
+            font-weight: bold;
+            color: #4a6fa5;
+            margin-bottom: 5px;
+        }
+        
+        .request-date {
+            color: #777;
+            font-size: 0.9em;
+            margin-bottom: 10px;
+        }
+        
+        .request-content {
+            line-height: 1.5;
+        }
+        
+        footer {
+            text-align: center;
+            margin-top: 40px;
+            padding: 20px 0;
+            color: #777;
+            font-size: 0.9em;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Prayer Request Form</h1>
+            <p>Share your prayer needs with our community</p>
+        </header>
+        
+        <div class="prayer-form">
+            <form id="prayerRequestForm">
+                <div class="form-group">
+                    <label for="name">Your Name (Optional)</label>
+                    <input type="text" id="name" name="name" placeholder="Michael King">
+                </div>
+                
+                <div class="form-group">
+                    <label for="email">Your Email (Optional)</label>
+                    <input type="email" id="email" name="email" placeholder="king@gmail.com">
+                </div>
+                
+                <div class="form-group">
+                    <label for="request">Your Prayer Request*</label>
+                    <textarea id="request" name="request" required placeholder="Please share your prayer need..."></textarea>
+                </div>
+                
+                <button type="submit" class="submit-btn">Submit Prayer Request</button>
+            </form>
+        </div>
+        
+        <div class="prayer-requests">
+            <h2>Recent Prayer Requests</h2>
+            <div id="requestsList">
+                <!-- Prayer requests will be displayed here -->
+                <div class="request-item">
+                    <div class="request-name"></div>
+                    <div class="request-date"></div>
+                    <div class="request-content"></div>
+                </div>
+                
+                <div class="request-item">
+                    <div class="request-name"></div>
+                    <div class="request-date"></div>
+                    <div class="request-content"></div>
+      </div>
+            </div>
+        </div>
+        
+        <footer>
+            <p>All prayer requests are confidential. Our community will pray for your needs.</p>
+        </footer>
+    </div>
+
+    <script>
+        document.getElementById('prayerRequestForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Get form values
+            const name = document.getElementById('name').value || 'Anonymous';
+            const request = document.getElementById('request').value;
+            const date = new Date().toLocaleDateString('en-US', { 
+                year: 'numeric', 
+                month: 'long', 
+                day: 'numeric' 
+            });
+            
+            // Create new prayer request element
+            const requestItem = document.createElement('div');
+            requestItem.className = 'request-item';
+            requestItem.innerHTML = `
+                <div class="request-name">${name}</div>
+                <div class="request-date">${date}</div>
+                <div class="request-content">${request}</div>
+            `;
+            
+            // Add to the top of the requests list
+            const requestsList = document.getElementById('requestsList');
+            requestsList.insertBefore(requestItem, requestsList.firstChild);
+            
+            // Clear the form
+            document.getElementById('prayerRequestForm').reset();
+            
+            // Show confirmation (you could replace this with an actual server submission)
+            alert('Thank you for sharing your prayer request. Our community will pray for you.');
+        });
+    </script>
+</body>
+</html>
