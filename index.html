@@ -95,19 +95,25 @@
      <div> <video src="preachig.mp4" width="310px" height="290px" controls autoplay muted alt=""></div>
         <section class="hero">
             <div class="hero-content">
- <style>
-    /* Make video cover the entire background */
-    .bg-video {
+                <h2>Welcome to CAC GOODWORKS ASSEMBLY</h2>
+
+                <p class="subtitle">Where we raise the Josephs, Daniels & Esthers of our time</p>
+                <div class="hero-btns">
+                    <a href="#about" class="btn btn-primary">Learn More</a>
+                    <a href="#events" class="btn btn-secondary">Upcoming Events</a>
+                     video.bg-video {
       position: fixed;
-      right: 0;
-      bottom: 0;
+      top: 0;
+      left: 0;
       min-width: 100%;
       min-height: 100%;
-      z-index: -1; /* Keep video behind content */
-      object-fit: cover; /* Crop nicely */
+      width: auto;
+      height: auto;
+      z-index: -1; /* Send behind content */
+      object-fit: cover; /* Crop/resize nicely */
     }
 
-    /* Content on top of video */
+    /* Foreground content */
     .content {
       position: relative;
       z-index: 1;
@@ -118,27 +124,19 @@
     }
 
     h1 {
-      font-size: 50px;
+      font-size: 60px;
       text-shadow: 2px 2px 8px rgba(0,0,0,0.7);
     }
     p {
-      font-size: 22px;
-      text-shadow: 2px 2px 5px rgba(0,0,0,0.7);
+      font-size: 24px;
+      text-shadow: 1px 1px 5px rgba(0,0,0,0.7);
     }
   </style>
-</head>
-<body>
   <!-- Background Video -->
   <video autoplay muted loop class="bg-video">
     <source src="your-video.mp4" type="video/mp4">
-    Your browser does not support HTML5 video.
+    Your browser does not support the video tag.
   </video>
-                <h2>Welcome to CAC GOODWORKS ASSEMBLY</h2>
-
-                <p class="subtitle">Where we raise the Josephs, Daniels & Esthers of our time</p>
-                <div class="hero-btns">
-                    <a href="#about" class="btn btn-primary">Learn More</a>
-                    <a href="#events" class="btn btn-secondary">Upcoming Events</a>
                 </div>
             </div>
         </section>
@@ -361,6 +359,7 @@
 </body>
 
 </html>
+
 
 
 
