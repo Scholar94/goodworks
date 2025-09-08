@@ -95,6 +95,44 @@
      <div> <video src="preachig.mp4" width="310px" height="290px" controls autoplay muted alt=""></div>
         <section class="hero">
             <div class="hero-content">
+ <style>
+    /* Make video cover the entire background */
+    .bg-video {
+      position: fixed;
+      right: 0;
+      bottom: 0;
+      min-width: 100%;
+      min-height: 100%;
+      z-index: -1; /* Keep video behind content */
+      object-fit: cover; /* Crop nicely */
+    }
+
+    /* Content on top of video */
+    .content {
+      position: relative;
+      z-index: 1;
+      text-align: center;
+      color: white;
+      font-family: Arial, sans-serif;
+      margin-top: 20%;
+    }
+
+    h1 {
+      font-size: 50px;
+      text-shadow: 2px 2px 8px rgba(0,0,0,0.7);
+    }
+    p {
+      font-size: 22px;
+      text-shadow: 2px 2px 5px rgba(0,0,0,0.7);
+    }
+  </style>
+</head>
+<body>
+  <!-- Background Video -->
+  <video autoplay muted loop class="bg-video">
+    <source src="your-video.mp4" type="video/mp4">
+    Your browser does not support HTML5 video.
+  </video>
                 <h2>Welcome to CAC GOODWORKS ASSEMBLY</h2>
 
                 <p class="subtitle">Where we raise the Josephs, Daniels & Esthers of our time</p>
@@ -323,6 +361,7 @@
 </body>
 
 </html>
+
 
 
 
