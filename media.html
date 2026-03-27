@@ -190,8 +190,6 @@
             box-shadow: var(--shadow);
             transition: var(--transition);
             animation: fadeInUp 0.6s ease forwards;
-            opacity: 0;
-            transform: translateY(30px);
         }
 
         .gallery-item:hover {
@@ -428,6 +426,10 @@
 
         /* Animations */
         @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
             to {
                 opacity: 1;
                 transform: translateY(0);
@@ -554,9 +556,268 @@
                 <button class="filter-btn" data-filter="building">Church Building</button>
             </div>
 
-            <!-- Gallery Grid -->
+            <!-- Gallery Grid - ADD YOUR IMAGES HERE -->
             <div class="gallery-grid" id="galleryGrid">
-                <!-- Gallery items will be populated by JavaScript -->
+                
+                <!-- WORSHIP SERVICES CATEGORY -->
+                <div class="gallery-item" data-category="worship">
+                    <div class="gallery-item-image">
+                        <img src="https://images.unsplash.com/photo-1541557435984-1c79685a082b?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80" alt="Sunday Worship Service">
+                        <div class="gallery-category-badge">Worship</div>
+                    </div>
+                    <div class="gallery-overlay">
+                        <h3>Sunday Worship Service</h3>
+                        <p>Powerful worship and praise during our Sunday morning service</p>
+                        <span class="view-btn">View Photo <i class="fas fa-arrow-right"></i></span>
+                    </div>
+                </div>
+
+                <div class="gallery-item" data-category="worship">
+                    <div class="gallery-item-image">
+                        <img src="https://images.unsplash.com/photo-1519074069444-1ba4fff66d16?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80" alt="Choir Ministry">
+                        <div class="gallery-category-badge">Worship</div>
+                    </div>
+                    <div class="gallery-overlay">
+                        <h3>Choir Ministry</h3>
+                        <p>The CAC Goodworks Assembly choir leading worship</p>
+                        <span class="view-btn">View Photo <i class="fas fa-arrow-right"></i></span>
+                    </div>
+                </div>
+
+                <div class="gallery-item" data-category="worship">
+                    <div class="gallery-item-image">
+                        <img src="https://images.unsplash.com/photo-1499364615650-ec38552f4f34?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80" alt="Praise and Worship">
+                        <div class="gallery-category-badge">Worship</div>
+                    </div>
+                    <div class="gallery-overlay">
+                        <h3>Praise and Worship</h3>
+                        <p>Lifting holy hands in praise to our King</p>
+                        <span class="view-btn">View Photo <i class="fas fa-arrow-right"></i></span>
+                    </div>
+                </div>
+
+                <div class="gallery-item" data-category="worship">
+                    <div class="gallery-item-image">
+                        <img src="https://images.unsplash.com/photo-1518391846015-55b9cc003b25?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80" alt="Prayer Meeting">
+                        <div class="gallery-category-badge">Worship</div>
+                    </div>
+                    <div class="gallery-overlay">
+                        <h3>Prayer Meeting</h3>
+                        <p>Early morning prayer and intercession</p>
+                        <span class="view-btn">View Photo <i class="fas fa-arrow-right"></i></span>
+                    </div>
+                </div>
+
+                <!-- EVENTS & GATHERINGS CATEGORY -->
+                <div class="gallery-item" data-category="events">
+                    <div class="gallery-item-image">
+                        <img src="https://images.unsplash.com/photo-1577897109850-6f5c0b71f1b3?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80" alt="Annual Convention">
+                        <div class="gallery-category-badge">Events</div>
+                    </div>
+                    <div class="gallery-overlay">
+                        <h3>Annual Convention 2023</h3>
+                        <p>Special convention with guest ministers from around the nation</p>
+                        <span class="view-btn">View Photo <i class="fas fa-arrow-right"></i></span>
+                    </div>
+                </div>
+
+                <div class="gallery-item" data-category="events">
+                    <div class="gallery-item-image">
+                        <img src="https://images.unsplash.com/photo-1529070539194-5e32586c09f5?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80" alt="Fellowship Gathering">
+                        <div class="gallery-category-badge">Events</div>
+                    </div>
+                    <div class="gallery-overlay">
+                        <h3>Fellowship Gathering</h3>
+                        <p>Church members fellowship and breaking bread together</p>
+                        <span class="view-btn">View Photo <i class="fas fa-arrow-right"></i></span>
+                    </div>
+                </div>
+
+                <div class="gallery-item" data-category="events">
+                    <div class="gallery-item-image">
+                        <img src="https://images.unsplash.com/photo-1511632765486-a01980e01a18?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80" alt="Thanksgiving Service">
+                        <div class="gallery-category-badge">Events</div>
+                    </div>
+                    <div class="gallery-overlay">
+                        <h3>Thanksgiving Service</h3>
+                        <p>Celebrating God's faithfulness and provision</p>
+                        <span class="view-btn">View Photo <i class="fas fa-arrow-right"></i></span>
+                    </div>
+                </div>
+
+                <div class="gallery-item" data-category="events">
+                    <div class="gallery-item-image">
+                        <img src="https://images.unsplash.com/photo-1543269865-cbf427effbad?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80" alt="Leadership Conference">
+                        <div class="gallery-category-badge">Events</div>
+                    </div>
+                    <div class="gallery-overlay">
+                        <h3>Leadership Conference</h3>
+                        <p>Training and equipping church leaders</p>
+                        <span class="view-btn">View Photo <i class="fas fa-arrow-right"></i></span>
+                    </div>
+                </div>
+
+                <!-- COMMUNITY OUTREACH CATEGORY -->
+                <div class="gallery-item" data-category="outreach">
+                    <div class="gallery-item-image">
+                        <img src="https://images.unsplash.com/photo-1579154204601-01588f351e67?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80" alt="Medical Outreach">
+                        <div class="gallery-category-badge">Outreach</div>
+                    </div>
+                    <div class="gallery-overlay">
+                        <h3>Medical Outreach</h3>
+                        <p>Free medical care for the community</p>
+                        <span class="view-btn">View Photo <i class="fas fa-arrow-right"></i></span>
+                    </div>
+                </div>
+
+                <div class="gallery-item" data-category="outreach">
+                    <div class="gallery-item-image">
+                        <img src="https://images.unsplash.com/photo-1593113630400-ea4288922493?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80" alt="Food Distribution">
+                        <div class="gallery-category-badge">Outreach</div>
+                    </div>
+                    <div class="gallery-overlay">
+                        <h3>Food Distribution</h3>
+                        <p>Sharing God's love through practical help</p>
+                        <span class="view-btn">View Photo <i class="fas fa-arrow-right"></i></span>
+                    </div>
+                </div>
+
+                <div class="gallery-item" data-category="outreach">
+                    <div class="gallery-item-image">
+                        <img src="https://images.unsplash.com/photo-1509062522246-3755977927d7?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80" alt="School Donation">
+                        <div class="gallery-category-badge">Outreach</div>
+                    </div>
+                    <div class="gallery-overlay">
+                        <h3>School Donation</h3>
+                        <p>Supporting education in our community</p>
+                        <span class="view-btn">View Photo <i class="fas fa-arrow-right"></i></span>
+                    </div>
+                </div>
+
+                <div class="gallery-item" data-category="outreach">
+                    <div class="gallery-item-image">
+                        <img src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80" alt="Visiting the Elderly">
+                        <div class="gallery-category-badge">Outreach</div>
+                    </div>
+                    <div class="gallery-overlay">
+                        <h3>Visiting the Elderly</h3>
+                        <p>Bringing joy and comfort to the elderly</p>
+                        <span class="view-btn">View Photo <i class="fas fa-arrow-right"></i></span>
+                    </div>
+                </div>
+
+                <!-- YOUTH & CHILDREN CATEGORY -->
+                <div class="gallery-item" data-category="youth">
+                    <div class="gallery-item-image">
+                        <img src="https://images.unsplash.com/photo-1501952476817-d7ae22e8ee4e?ixlib=rb-4.0.3&auto=format&fit=crop&w=1469&q=80" alt="Youth Camp">
+                        <div class="gallery-category-badge">Youth</div>
+                    </div>
+                    <div class="gallery-overlay">
+                        <h3>Youth Camp</h3>
+                        <p>Empowering the next generation for Christ</p>
+                        <span class="view-btn">View Photo <i class="fas fa-arrow-right"></i></span>
+                    </div>
+                </div>
+
+                <div class="gallery-item" data-category="youth">
+                    <div class="gallery-item-image">
+                        <img src="https://images.unsplash.com/photo-1579621981033-9dbb4d439c1c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1472&q=80" alt="Children's Church">
+                        <div class="gallery-category-badge">Youth</div>
+                    </div>
+                    <div class="gallery-overlay">
+                        <h3>Children's Church</h3>
+                        <p>Fun and engaging lessons about Jesus</p>
+                        <span class="view-btn">View Photo <i class="fas fa-arrow-right"></i></span>
+                    </div>
+                </div>
+
+                <div class="gallery-item" data-category="youth">
+                    <div class="gallery-item-image">
+                        <img src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80" alt="Teenagers Conference">
+                        <div class="gallery-category-badge">Youth</div>
+                    </div>
+                    <div class="gallery-overlay">
+                        <h3>Teenagers Conference</h3>
+                        <p>Building character and faith in teens</p>
+                        <span class="view-btn">View Photo <i class="fas fa-arrow-right"></i></span>
+                    </div>
+                </div>
+
+                <div class="gallery-item" data-category="youth">
+                    <div class="gallery-item-image">
+                        <img src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80" alt="Vacation Bible School">
+                        <div class="gallery-category-badge">Youth</div>
+                    </div>
+                    <div class="gallery-overlay">
+                        <h3>Vacation Bible School</h3>
+                        <p>Summer program for children</p>
+                        <span class="view-btn">View Photo <i class="fas fa-arrow-right"></i></span>
+                    </div>
+                </div>
+
+                <!-- CHURCH BUILDING CATEGORY -->
+                <div class="gallery-item" data-category="building">
+                    <div class="gallery-item-image">
+                        <img src="https://images.unsplash.com/photo-1518834103328-9d1bcb4c8be3?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80" alt="Church Exterior">
+                        <div class="gallery-category-badge">Building</div>
+                    </div>
+                    <div class="gallery-overlay">
+                        <h3>Church Exterior</h3>
+                        <p>The beautiful sanctuary of CAC Goodworks Assembly</p>
+                        <span class="view-btn">View Photo <i class="fas fa-arrow-right"></i></span>
+                    </div>
+                </div>
+
+                <div class="gallery-item" data-category="building">
+                    <div class="gallery-item-image">
+                        <img src="https://images.unsplash.com/photo-1438032945731-e2181479cfcd?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80" alt="Interior Sanctuary">
+                        <div class="gallery-category-badge">Building</div>
+                    </div>
+                    <div class="gallery-overlay">
+                        <h3>Interior Sanctuary</h3>
+                        <p>Where we gather to worship</p>
+                        <span class="view-btn">View Photo <i class="fas fa-arrow-right"></i></span>
+                    </div>
+                </div>
+
+                <div class="gallery-item" data-category="building">
+                    <div class="gallery-item-image">
+                        <img src="https://images.unsplash.com/photo-1577022791915-c8c3e5c2df1c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80" alt="Fellowship Hall">
+                        <div class="gallery-category-badge">Building</div>
+                    </div>
+                    <div class="gallery-overlay">
+                        <h3>Fellowship Hall</h3>
+                        <p>Place of community and connection</p>
+                        <span class="view-btn">View Photo <i class="fas fa-arrow-right"></i></span>
+                    </div>
+                </div>
+
+                <div class="gallery-item" data-category="building">
+                    <div class="gallery-item-image">
+                        <img src="https://images.unsplash.com/photo-1518005020951-eccb494ad742?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80" alt="Church Grounds">
+                        <div class="gallery-category-badge">Building</div>
+                    </div>
+                    <div class="gallery-overlay">
+                        <h3>Church Grounds</h3>
+                        <p>Beautiful landscape and prayer garden</p>
+                        <span class="view-btn">View Photo <i class="fas fa-arrow-right"></i></span>
+                    </div>
+                </div>
+
+                <!-- ADD MORE GALLERY ITEMS HERE - Copy and paste the pattern below -->
+                <!--
+                <div class="gallery-item" data-category="your-category">
+                    <div class="gallery-item-image">
+                        <img src="your-image-url.jpg" alt="Image Description">
+                        <div class="gallery-category-badge">Category Name</div>
+                    </div>
+                    <div class="gallery-overlay">
+                        <h3>Image Title</h3>
+                        <p>Image description text here</p>
+                        <span class="view-btn">View Photo <i class="fas fa-arrow-right"></i></span>
+                    </div>
+                </div>
+                -->
             </div>
 
             <!-- Gallery Statistics -->
@@ -566,8 +827,8 @@
                     <div class="stat-label">Total Photos</div>
                 </div>
                 <div class="stat-item">
-                    <div class="stat-number" id="eventsCount">0</div>
-                    <div class="stat-label">Events Captured</div>
+                    <div class="stat-number" id="categoriesCount">5</div>
+                    <div class="stat-label">Categories</div>
                 </div>
                 <div class="stat-item">
                     <div class="stat-number" id="yearsCount">24</div>
@@ -596,355 +857,6 @@
     </div>
 
     <script>
-        // Gallery Data
-        const galleryData = [
-            // Worship Services
-            {
-                id: 1,
-                title: "Sunday Worship Service",
-                description: "Powerful worship and praise during our Sunday morning service",
-                category: "worship",
-                image: "https://images.unsplash.com/photo-1541557435984-1c79685a082b?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80",
-                date: "2023-07-23"
-            },
-            {
-                id: 2,
-                title: "Choir Ministry",
-                description: "The CAC Goodworks Assembly choir leading worship",
-                category: "worship",
-                image: "https://images.unsplash.com/photo-1519074069444-1ba4fff66d16?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80",
-                date: "2023-07-16"
-            },
-            {
-                id: 3,
-                title: "Praise and Worship",
-                description: "Lifting holy hands in praise to our King",
-                category: "worship",
-                image: "https://images.unsplash.com/photo-1499364615650-ec38552f4f34?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80",
-                date: "2023-07-09"
-            },
-            {
-                id: 4,
-                title: "Prayer Meeting",
-                description: "Early morning prayer and intercession",
-                category: "worship",
-                image: "https://images.unsplash.com/photo-1518391846015-55b9cc003b25?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80",
-                date: "2023-06-28"
-            },
-            // Events & Gatherings
-            {
-                id: 5,
-                title: "Annual Convention 2023",
-                description: "Special convention with guest ministers from around the nation",
-                category: "events",
-                image: "https://images.unsplash.com/photo-1577897109850-6f5c0b71f1b3?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80",
-                date: "2023-06-18"
-            },
-            {
-                id: 6,
-                title: "Fellowship Gathering",
-                description: "Church members fellowship and breaking bread together",
-                category: "events",
-                image: "https://images.unsplash.com/photo-1529070539194-5e32586c09f5?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80",
-                date: "2023-06-11"
-            },
-            {
-                id: 7,
-                title: "Thanksgiving Service",
-                description: "Celebrating God's faithfulness and provision",
-                category: "events",
-                image: "https://images.unsplash.com/photo-1511632765486-a01980e01a18?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80",
-                date: "2023-06-04"
-            },
-            {
-                id: 8,
-                title: "Leadership Conference",
-                description: "Training and equipping church leaders",
-                category: "events",
-                image: "https://images.unsplash.com/photo-1543269865-cbf427effbad?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80",
-                date: "2023-05-28"
-            },
-            // Community Outreach
-            {
-                id: 9,
-                title: "Medical Outreach",
-                description: "Free medical care for the community",
-                category: "outreach",
-                image: "https://images.unsplash.com/photo-1579154204601-01588f351e67?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80",
-                date: "2023-07-15"
-            },
-            {
-                id: 10,
-                title: "Food Distribution",
-                description: "Sharing God's love through practical help",
-                category: "outreach",
-                image: "https://images.unsplash.com/photo-1593113630400-ea4288922493?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80",
-                date: "2023-07-08"
-            },
-            {
-                id: 11,
-                title: "School Donation",
-                description: "Supporting education in our community",
-                category: "outreach",
-                image: "https://images.unsplash.com/photo-1509062522246-3755977927d7?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80",
-                date: "2023-06-25"
-            },
-            {
-                id: 12,
-                title: "Visiting the Elderly",
-                description: "Bringing joy and comfort to the elderly",
-                category: "outreach",
-                image: "https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80",
-                date: "2023-06-18"
-            },
-            // Youth & Children
-            {
-                id: 13,
-                title: "Youth Camp",
-                description: "Empowering the next generation for Christ",
-                category: "youth",
-                image: "https://images.unsplash.com/photo-1501952476817-d7ae22e8ee4e?ixlib=rb-4.0.3&auto=format&fit=crop&w=1469&q=80",
-                date: "2023-07-22"
-            },
-            {
-                id: 14,
-                title: "Children's Church",
-                description: "Fun and engaging lessons about Jesus",
-                category: "youth",
-                image: "https://images.unsplash.com/photo-1579621981033-9dbb4d439c1c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1472&q=80",
-                date: "2023-07-16"
-            },
-            {
-                id: 15,
-                title: "Teenagers Conference",
-                description: "Building character and faith in teens",
-                category: "youth",
-                image: "https://images.unsplash.com/photo-1523240795612-9a054b0db644?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80",
-                date: "2023-07-09"
-            },
-            {
-                id: 16,
-                title: "Vacation Bible School",
-                description: "Summer program for children",
-                category: "youth",
-                image: "https://images.unsplash.com/photo-1503676260728-1c00da094a0b?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80",
-                date: "2023-07-02"
-            },
-            // Church Building
-            {
-                id: 17,
-                title: "Church Exterior",
-                description: "The beautiful sanctuary of CAC Goodworks Assembly",
-                category: "building",
-                image: "https://images.unsplash.com/photo-1518834103328-9d1bcb4c8be3?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80",
-                date: "2023-07-01"
-            },
-            {
-                id: 18,
-                title: "Interior Sanctuary",
-                description: "Where we gather to worship",
-                category: "building",
-                image: "https://images.unsplash.com/photo-1438032945731-e2181479cfcd?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80",
-                date: "2023-06-15"
-            },
-            {
-                id: 19,
-                title: "Fellowship Hall",
-                description: "Place of community and connection",
-                category: "building",
-                image: "https://images.unsplash.com/photo-1577022791915-c8c3e5c2df1c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80",
-                date: "2023-06-01"
-            },
-            {
-                id: 20,
-                title: "Church Grounds",
-                description: "Beautiful landscape and prayer garden",
-                category: "building",
-                image: "https://images.unsplash.com/photo-1518005020951-eccb494ad742?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80",
-                date: "2023-05-15"
-            },
-            // Additional Worship
-            {
-                id: 21,
-                title: "Baptism Service",
-                description: "Celebrating new life in Christ",
-                category: "worship",
-                image: "https://images.unsplash.com/photo-1518834103328-9d1bcb4c8be3?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80",
-                date: "2023-07-30"
-            },
-            {
-                id: 22,
-                title: "Christmas Celebration",
-                description: "Celebrating the birth of our Savior",
-                category: "events",
-                image: "https://images.unsplash.com/photo-1548266652-99cf27701dec?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80",
-                date: "2022-12-25"
-            },
-            {
-                id: 23,
-                title: "Easter Sunrise Service",
-                description: "Celebrating the resurrection of Jesus",
-                category: "worship",
-                image: "https://images.unsplash.com/photo-1503443207922-dff7d543fd0e?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80",
-                date: "2023-04-09"
-            },
-            {
-                id: 24,
-                title: "Missions Trip",
-                description: "Sharing the Gospel in rural communities",
-                category: "outreach",
-                image: "https://images.unsplash.com/photo-1537047902294-62a40c20a6ae?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80",
-                date: "2023-05-20"
-            }
-        ];
-
-        // DOM Elements
-        const galleryGrid = document.getElementById('galleryGrid');
-        const lightbox = document.getElementById('lightbox');
-        const lightboxImage = document.getElementById('lightboxImage');
-        const lightboxTitle = document.getElementById('lightboxTitle');
-        const lightboxDescription = document.getElementById('lightboxDescription');
-        const prevBtn = document.getElementById('prevBtn');
-        const nextBtn = document.getElementById('nextBtn');
-        const filterBtns = document.querySelectorAll('.filter-btn');
-        const totalPhotosSpan = document.getElementById('totalPhotos');
-        const eventsCountSpan = document.getElementById('eventsCount');
-
-        let currentFilter = 'all';
-        let currentLightboxIndex = 0;
-        let filteredItems = [];
-
-        // Render Gallery
-        function renderGallery() {
-            let filteredData = galleryData;
-            
-            if (currentFilter !== 'all') {
-                filteredData = galleryData.filter(item => item.category === currentFilter);
-            }
-            
-            filteredItems = filteredData;
-            
-            // Update statistics
-            totalPhotosSpan.textContent = filteredData.length;
-            const eventsCount = filteredData.filter(item => item.category === 'events').length;
-            eventsCountSpan.textContent = eventsCount;
-            
-            // Generate HTML
-            galleryGrid.innerHTML = filteredData.map((item, index) => `
-                <div class="gallery-item" data-id="${item.id}" data-index="${index}" style="animation-delay: ${index * 0.05}s">
-                    <div class="gallery-item-image">
-                        <img src="${item.image}" alt="${item.title}" loading="lazy">
-                        <div class="gallery-category-badge">
-                            ${getCategoryName(item.category)}
-                        </div>
-                    </div>
-                    <div class="gallery-overlay">
-                        <h3>${item.title}</h3>
-                        <p>${item.description}</p>
-                        <span class="view-btn">View Photo <i class="fas fa-arrow-right"></i></span>
-                    </div>
-                </div>
-            `).join('');
-            
-            // Add click event listeners to gallery items
-            document.querySelectorAll('.gallery-item').forEach(item => {
-                item.addEventListener('click', (e) => {
-                    const index = parseInt(item.dataset.index);
-                    openLightbox(index);
-                });
-            });
-        }
-        
-        function getCategoryName(category) {
-            const categories = {
-                worship: 'Worship',
-                events: 'Events',
-                outreach: 'Outreach',
-                youth: 'Youth',
-                building: 'Building'
-            };
-            return categories[category] || category;
-        }
-        
-        // Open Lightbox
-        function openLightbox(index) {
-            currentLightboxIndex = index;
-            const item = filteredItems[index];
-            lightboxImage.src = item.image;
-            lightboxTitle.textContent = item.title;
-            lightboxDescription.textContent = `${item.description} • ${formatDate(item.date)}`;
-            lightbox.classList.add('active');
-            document.body.style.overflow = 'hidden';
-        }
-        
-        // Close Lightbox
-        function closeLightbox() {
-            lightbox.classList.remove('active');
-            document.body.style.overflow = '';
-        }
-        
-        // Navigate Lightbox
-        function nextImage() {
-            currentLightboxIndex = (currentLightboxIndex + 1) % filteredItems.length;
-            openLightbox(currentLightboxIndex);
-        }
-        
-        function prevImage() {
-            currentLightboxIndex = (currentLightboxIndex - 1 + filteredItems.length) % filteredItems.length;
-            openLightbox(currentLightboxIndex);
-        }
-        
-        // Format Date
-        function formatDate(dateString) {
-            const date = new Date(dateString);
-            return date.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
-        }
-        
-        // Filter Function
-        function setFilter(filter) {
-            currentFilter = filter;
-            renderGallery();
-            
-            // Update active button state
-            filterBtns.forEach(btn => {
-                if (btn.dataset.filter === filter) {
-                    btn.classList.add('active');
-                } else {
-                    btn.classList.remove('active');
-                }
-            });
-        }
-        
-        // Event Listeners
-        filterBtns.forEach(btn => {
-            btn.addEventListener('click', () => {
-                setFilter(btn.dataset.filter);
-            });
-        });
-        
-        document.querySelector('.lightbox-close').addEventListener('click', closeLightbox);
-        nextBtn.addEventListener('click', nextImage);
-        prevBtn.addEventListener('click', prevImage);
-        
-        lightbox.addEventListener('click', (e) => {
-            if (e.target === lightbox) {
-                closeLightbox();
-            }
-        });
-        
-        // Keyboard navigation
-        document.addEventListener('keydown', (e) => {
-            if (!lightbox.classList.contains('active')) return;
-            
-            if (e.key === 'ArrowRight') {
-                nextImage();
-            } else if (e.key === 'ArrowLeft') {
-                prevImage();
-            } else if (e.key === 'Escape') {
-                closeLightbox();
-            }
-        });
-        
         // Theme Toggle Functionality
         const themeToggle = document.getElementById('themeToggle');
         const themeIcon = document.getElementById('themeIcon');
@@ -974,31 +886,143 @@
             updateThemeIcon(newTheme);
         });
         
-        // Initialize Gallery
-        renderGallery();
+        // Gallery Filtering
+        const filterBtns = document.querySelectorAll('.filter-btn');
+        const galleryItems = document.querySelectorAll('.gallery-item');
+        const totalPhotosSpan = document.getElementById('totalPhotos');
         
-        // Add smooth scroll animation
-        window.addEventListener('load', () => {
-            const items = document.querySelectorAll('.gallery-item');
-            items.forEach((item, index) => {
-                item.style.opacity = '1';
-                item.style.transform = 'translateY(0)';
+        // Update total photos count
+        totalPhotosSpan.textContent = galleryItems.length;
+        
+        function filterGallery(category) {
+            galleryItems.forEach(item => {
+                if (category === 'all' || item.dataset.category === category) {
+                    item.style.display = 'block';
+                    item.style.animation = 'fadeInUp 0.6s ease forwards';
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+        }
+        
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                filterBtns.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                const category = btn.dataset.filter;
+                filterGallery(category);
             });
         });
         
-        // Lazy loading images
-        const imageObserver = new IntersectionObserver((entries, observer) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    const img = entry.target;
-                    img.src = img.dataset.src || img.src;
-                    observer.unobserve(img);
+        // Lightbox Functionality
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImage = document.getElementById('lightboxImage');
+        const lightboxTitle = document.getElementById('lightboxTitle');
+        const lightboxDescription = document.getElementById('lightboxDescription');
+        const prevBtn = document.getElementById('prevBtn');
+        const nextBtn = document.getElementById('nextBtn');
+        
+        let currentIndex = 0;
+        let visibleItems = [];
+        
+        function updateVisibleItems() {
+            visibleItems = Array.from(galleryItems).filter(item => item.style.display !== 'none');
+        }
+        
+        function openLightbox(index) {
+            updateVisibleItems();
+            if (visibleItems.length === 0) return;
+            
+            currentIndex = index;
+            const item = visibleItems[currentIndex];
+            const img = item.querySelector('img');
+            const overlay = item.querySelector('.gallery-overlay');
+            const title = overlay.querySelector('h3').textContent;
+            const description = overlay.querySelector('p').textContent;
+            
+            lightboxImage.src = img.src;
+            lightboxTitle.textContent = title;
+            lightboxDescription.textContent = description;
+            lightbox.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+        
+        function closeLightbox() {
+            lightbox.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+        
+        function nextImage() {
+            if (visibleItems.length === 0) return;
+            currentIndex = (currentIndex + 1) % visibleItems.length;
+            const item = visibleItems[currentIndex];
+            const img = item.querySelector('img');
+            const overlay = item.querySelector('.gallery-overlay');
+            const title = overlay.querySelector('h3').textContent;
+            const description = overlay.querySelector('p').textContent;
+            
+            lightboxImage.src = img.src;
+            lightboxTitle.textContent = title;
+            lightboxDescription.textContent = description;
+        }
+        
+        function prevImage() {
+            if (visibleItems.length === 0) return;
+            currentIndex = (currentIndex - 1 + visibleItems.length) % visibleItems.length;
+            const item = visibleItems[currentIndex];
+            const img = item.querySelector('img');
+            const overlay = item.querySelector('.gallery-overlay');
+            const title = overlay.querySelector('h3').textContent;
+            const description = overlay.querySelector('p').textContent;
+            
+            lightboxImage.src = img.src;
+            lightboxTitle.textContent = title;
+            lightboxDescription.textContent = description;
+        }
+        
+        // Add click event to gallery items
+        galleryItems.forEach((item, index) => {
+            item.addEventListener('click', () => {
+                updateVisibleItems();
+                const newIndex = visibleItems.findIndex(visible => visible === item);
+                if (newIndex !== -1) {
+                    openLightbox(newIndex);
                 }
             });
         });
         
-        document.querySelectorAll('.gallery-item-image img').forEach(img => {
-            imageObserver.observe(img);
+        // Lightbox controls
+        document.querySelector('.lightbox-close').addEventListener('click', closeLightbox);
+        nextBtn.addEventListener('click', nextImage);
+        prevBtn.addEventListener('click', prevImage);
+        
+        lightbox.addEventListener('click', (e) => {
+            if (e.target === lightbox) {
+                closeLightbox();
+            }
+        });
+        
+        // Keyboard navigation
+        document.addEventListener('keydown', (e) => {
+            if (!lightbox.classList.contains('active')) return;
+            
+            if (e.key === 'ArrowRight') {
+                nextImage();
+            } else if (e.key === 'ArrowLeft') {
+                prevImage();
+            } else if (e.key === 'Escape') {
+                closeLightbox();
+            }
+        });
+        
+        // Initialize gallery
+        filterGallery('all');
+        
+        // Add smooth scroll animation on load
+        window.addEventListener('load', () => {
+            galleryItems.forEach((item, index) => {
+                item.style.animationDelay = `${index * 0.05}s`;
+            });
         });
     </script>
 </body>
