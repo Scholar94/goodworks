@@ -3,206 +3,292 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CAC GOODWORKS ASSEMBLY MEDIA GALLERY</title>
+    <title>Gallery - CAC GOODWORKS ASSEMBLY</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        /* Light Theme Variables */
+        :root {
+            --primary: #8B4513;
+            --primary-light: #A0522D;
+            --primary-dark: #6B2E0E;
+            --secondary: #DAA520;
+            --secondary-light: #F0C45A;
+            --accent: #2E8B57;
+            --bg-primary: #ffffff;
+            --bg-secondary: #F8F5F0;
+            --bg-tertiary: #f0e9e0;
+            --text-primary: #333333;
+            --text-secondary: #555555;
+            --text-muted: #777777;
+            --border-color: #e0d5c8;
+            --card-bg: #ffffff;
+            --shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            --shadow-hover: 0 15px 40px rgba(0, 0, 0, 0.15);
+            --overlay-bg: rgba(0, 0, 0, 0.85);
+            --transition: all 0.3s ease;
+        }
+
+        /* Dark Theme Variables */
+        [data-theme="dark"] {
+            --primary: #B87333;
+            --primary-light: #CD7F4B;
+            --primary-dark: #9E5E2A;
+            --secondary: #FFD966;
+            --accent: #3CB371;
+            --bg-primary: #1a1a1a;
+            --bg-secondary: #2d2d2d;
+            --bg-tertiary: #333333;
+            --text-primary: #ffffff;
+            --text-secondary: #e0e0e0;
+            --text-muted: #b0b0b0;
+            --border-color: #404040;
+            --card-bg: #2d2d2d;
+            --shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            --shadow-hover: 0 15px 40px rgba(0, 0, 0, 0.4);
+            --overlay-bg: rgba(0, 0, 0, 0.9);
         }
 
         body {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: #333;
-            line-height: 1.6;
-            min-height: 100vh;
-            padding-bottom: 60px;
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            transition: background-color 0.3s ease, color 0.3s ease;
+            overflow-x: hidden;
+        }
+
+        /* Gallery Section Styles */
+        .gallery-section {
+            padding: 100px 0;
+            background-color: var(--bg-primary);
         }
 
         .container {
-            max-width: 1200px;
+            max-width: 1400px;
             margin: 0 auto;
             padding: 0 20px;
         }
 
-        header {
-            background: rgba(255, 255, 255, 0.9);
-            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
-            padding: 20px 0;
-            position: sticky;
-            top: 0;
-            z-index: 100;
-        }
-
-        .header-content {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .logo {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-        }
-
-        .logo-icon {
-            font-size: 2.5rem;
-            color: #4b6cb7;
-        }
-
-        .logo-text {
-            font-size: 1.8rem;
-            font-weight: 700;
-            color: #2c3e50;
-        }
-
-        nav ul {
-            display: flex;
-            list-style: none;
-            gap: 25px;
-        }
-
-        nav a {
-            text-decoration: none;
-            color: #2c3e50;
-            font-weight: 600;
-            padding: 8px 15px;
-            border-radius: 20px;
-            transition: all 0.3s ease;
-        }
-
-        nav a:hover, nav a.active {
-            background: #4b6cb7;
-            color: white;
-        }
-
-        .hero {
+        /* Section Header */
+        .section-header {
             text-align: center;
-            padding: 60px 0;
-            color: white;
+            margin-bottom: 60px;
         }
 
-        .hero h1 {
+        .section-header h1 {
+            font-family: 'Playfair Display', serif;
             font-size: 3rem;
-            margin-bottom: 20px;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
-        }
-
-        .hero p {
-            font-size: 1.2rem;
-            max-width: 700px;
-            margin: 0 auto 30px;
-            opacity: 0.9;
-        }
-
-        .btn {
+            color: var(--primary);
+            margin-bottom: 15px;
+            position: relative;
             display: inline-block;
-            background: white;
-            color: #4b6cb7;
-            padding: 12px 30px;
-            border-radius: 30px;
-            text-decoration: none;
-            font-weight: 600;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-            transition: all 0.3s ease;
         }
 
-        .btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+        .section-header h1::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background-color: var(--secondary);
         }
 
-        .filters {
+        .section-header p {
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+            margin-top: 20px;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Theme Toggle */
+        .theme-toggle {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            z-index: 1000;
+            background-color: var(--primary);
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            border: 3px solid var(--bg-primary);
+        }
+
+        .theme-toggle:hover {
+            transform: scale(1.1);
+            background-color: var(--primary-dark);
+        }
+
+        .theme-toggle i {
+            font-size: 1.8rem;
+        }
+
+        /* Category Filter */
+        .gallery-filters {
             display: flex;
             justify-content: center;
-            flex-wrap: wrap;
             gap: 15px;
-            margin: 30px 0;
+            margin-bottom: 50px;
+            flex-wrap: wrap;
         }
 
         .filter-btn {
-            background: rgba(255, 255, 255, 0.9);
-            border: none;
-            padding: 10px 25px;
-            border-radius: 25px;
-            cursor: pointer;
+            padding: 12px 28px;
+            background-color: var(--bg-secondary);
+            border: 2px solid var(--border-color);
+            border-radius: 50px;
+            font-family: 'Poppins', sans-serif;
+            font-size: 1rem;
             font-weight: 600;
-            transition: all 0.3s ease;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            color: var(--text-primary);
+            cursor: pointer;
+            transition: var(--transition);
         }
 
         .filter-btn:hover {
-            background: #4b6cb7;
+            background-color: var(--primary);
             color: white;
+            border-color: var(--primary);
+            transform: translateY(-3px);
         }
 
         .filter-btn.active {
-            background: #4b6cb7;
+            background-color: var(--primary);
             color: white;
+            border-color: var(--primary);
         }
 
-        .gallery {
+        /* Gallery Grid */
+        .gallery-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 25px;
-            margin-top: 40px;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 30px;
         }
 
         .gallery-item {
-            border-radius: 12px;
-            overflow: hidden;
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
-            transition: transform 0.3s ease;
-            cursor: pointer;
             position: relative;
+            border-radius: 15px;
+            overflow: hidden;
+            cursor: pointer;
+            background-color: var(--card-bg);
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            animation: fadeInUp 0.6s ease forwards;
+            opacity: 0;
+            transform: translateY(30px);
         }
 
         .gallery-item:hover {
             transform: translateY(-10px);
+            box-shadow: var(--shadow-hover);
         }
 
-        .gallery-item img {
+        .gallery-item-image {
+            position: relative;
+            overflow: hidden;
+            aspect-ratio: 4/3;
+        }
+
+        .gallery-item-image img {
             width: 100%;
-            height: 250px;
+            height: 100%;
             object-fit: cover;
-            display: block;
             transition: transform 0.5s ease;
         }
 
-        .gallery-item:hover img {
+        .gallery-item:hover .gallery-item-image img {
             transform: scale(1.1);
         }
 
-        .item-overlay {
+        .gallery-overlay {
             position: absolute;
-            bottom: 0;
+            top: 0;
             left: 0;
-            right: 0;
-            background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
-            padding: 20px;
-            color: white;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding: 25px;
             opacity: 0;
-            transition: opacity 0.3s ease;
+            transition: var(--transition);
         }
 
-        .gallery-item:hover .item-overlay {
+        .gallery-item:hover .gallery-overlay {
             opacity: 1;
         }
 
-        .item-title {
-            font-weight: 700;
-            margin-bottom: 5px;
-            font-size: 1.2rem;
+        .gallery-overlay h3 {
+            color: white;
+            font-size: 1.3rem;
+            margin-bottom: 8px;
+            transform: translateY(20px);
+            transition: transform 0.3s ease;
         }
 
-        .item-category {
+        .gallery-overlay p {
+            color: rgba(255, 255, 255, 0.9);
             font-size: 0.9rem;
-            opacity: 0.8;
+            margin-bottom: 15px;
+            transform: translateY(20px);
+            transition: transform 0.3s ease 0.05s;
         }
 
+        .gallery-overlay .view-btn {
+            background-color: var(--primary);
+            color: white;
+            padding: 8px 20px;
+            border-radius: 25px;
+            display: inline-block;
+            width: fit-content;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transform: translateY(20px);
+            transition: transform 0.3s ease 0.1s, background-color 0.3s ease;
+        }
+
+        .gallery-overlay .view-btn:hover {
+            background-color: var(--secondary);
+        }
+
+        .gallery-item:hover .gallery-overlay h3,
+        .gallery-item:hover .gallery-overlay p,
+        .gallery-item:hover .gallery-overlay .view-btn {
+            transform: translateY(0);
+        }
+
+        .gallery-category-badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background-color: var(--primary);
+            color: white;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            z-index: 2;
+            opacity: 0.9;
+        }
+
+        /* Lightbox Modal */
         .lightbox {
             display: none;
             position: fixed;
@@ -210,363 +296,710 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.9);
-            z-index: 1000;
-            justify-content: center;
-            align-items: center;
+            background-color: var(--overlay-bg);
+            z-index: 2000;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .lightbox.active {
+            display: flex;
+            opacity: 1;
         }
 
         .lightbox-content {
+            position: relative;
             max-width: 90%;
             max-height: 90%;
-            position: relative;
+            margin: auto;
+            background-color: var(--bg-primary);
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: var(--shadow-hover);
+            animation: zoomIn 0.3s ease;
         }
 
         .lightbox-content img {
-            max-width: 100%;
+            width: 100%;
+            height: auto;
             max-height: 80vh;
-            border-radius: 8px;
-            box-shadow: 0 5px 25px rgba(0, 0, 0, 0.4);
+            object-fit: contain;
+            display: block;
         }
 
-        .lightbox-caption {
-            color: white;
-            text-align: center;
-            margin-top: 15px;
-            font-size: 1.2rem;
+        .lightbox-info {
+            padding: 20px;
+            background-color: var(--bg-primary);
+            border-top: 1px solid var(--border-color);
         }
 
-        .close-btn {
+        .lightbox-info h3 {
+            color: var(--primary);
+            margin-bottom: 10px;
+        }
+
+        .lightbox-info p {
+            color: var(--text-secondary);
+            margin-bottom: 0;
+        }
+
+        .lightbox-close {
             position: absolute;
-            top: 20px;
-            right: 20px;
+            top: 15px;
+            right: 15px;
+            background-color: var(--primary);
             color: white;
-            font-size: 2rem;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             cursor: pointer;
-            transition: color 0.3s ease;
+            transition: var(--transition);
+            z-index: 10;
         }
 
-        .close-btn:hover {
-            color: #4b6cb7;
+        .lightbox-close:hover {
+            background-color: var(--secondary);
+            transform: rotate(90deg);
         }
 
-        .prev-btn, .next-btn {
+        .lightbox-nav {
             position: absolute;
             top: 50%;
             transform: translateY(-50%);
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            padding: 0 20px;
+            pointer-events: none;
+        }
+
+        .lightbox-nav button {
+            background-color: var(--primary);
             color: white;
-            font-size: 2rem;
-            cursor: pointer;
-            background: rgba(0, 0, 0, 0.5);
             width: 50px;
             height: 50px;
             border-radius: 50%;
+            border: none;
+            cursor: pointer;
+            transition: var(--transition);
+            pointer-events: auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+        }
+
+        .lightbox-nav button:hover {
+            background-color: var(--secondary);
+            transform: scale(1.1);
+        }
+
+        /* Statistics Section */
+        .gallery-stats {
             display: flex;
             justify-content: center;
-            align-items: center;
-            transition: background 0.3s ease;
-        }
-
-        .prev-btn:hover, .next-btn:hover {
-            background: rgba(0, 0, 0, 0.8);
-        }
-
-        .prev-btn {
-            left: 20px;
-        }
-
-        .next-btn {
-            right: 20px;
-        }
-
-        footer {
-            text-align: center;
+            gap: 50px;
             margin-top: 60px;
-            color: white;
-            opacity: 0.8;
+            padding: 40px;
+            background-color: var(--bg-secondary);
+            border-radius: 20px;
+            flex-wrap: wrap;
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--primary);
+            font-family: 'Playfair Display', serif;
+        }
+
+        .stat-label {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            margin-top: 5px;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes zoomIn {
+            from {
+                transform: scale(0.8);
+                opacity: 0;
+            }
+            to {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            .gallery-grid {
+                grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+                gap: 25px;
+            }
         }
 
         @media (max-width: 768px) {
-            .header-content {
-                flex-direction: column;
+            .gallery-section {
+                padding: 60px 0;
+            }
+            
+            .section-header h1 {
+                font-size: 2.3rem;
+            }
+            
+            .section-header p {
+                font-size: 1rem;
+            }
+            
+            .gallery-filters {
+                gap: 10px;
+            }
+            
+            .filter-btn {
+                padding: 8px 20px;
+                font-size: 0.9rem;
+            }
+            
+            .gallery-grid {
+                grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
                 gap: 20px;
             }
-
-            nav ul {
-                gap: 10px;
-                flex-wrap: wrap;
-                justify-content: center;
+            
+            .gallery-stats {
+                gap: 30px;
+                padding: 30px 20px;
             }
-
-            .hero h1 {
-                font-size: 2.2rem;
+            
+            .stat-number {
+                font-size: 2rem;
             }
-
-            .gallery {
-                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-                gap: 15px;
+            
+            .lightbox-nav button {
+                width: 40px;
+                height: 40px;
+                font-size: 1rem;
             }
+        }
+
+        @media (max-width: 480px) {
+            .gallery-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .gallery-filters {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            
+            .filter-btn {
+                text-align: center;
+            }
+        }
+
+        /* Scrollbar Styling */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--bg-secondary);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--primary);
+            border-radius: 5px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--primary-dark);
         }
     </style>
 </head>
 <body>
-    <header>
-        <div class="container">
-            <div class="header-content">
-                <div class="logo">
-                    <div class="logo-icon"><i class="fas fa-church"></i></div>
-                    <div class="logo-text">CAC Goodworks Assembly</div>
-                </div>
-                <nav>
-                    <ul>
-                        <li><a href="#" class="active">Gallery</a></li>
-                    </ul>
-                </nav>
-            </div>
-        </div>
-    </header>
-
-    <div class="hero">
-        <div class="container">
-            <h1>CAC Goodworks Assembly Gallery</h1>
-            <p>Browse through our collection of worship services, community events, and ministry activities</p>
-            <a href="#gallery" class="btn">View Gallery</a>
-        </div>
+    <!-- Theme Toggle Button -->
+    <div class="theme-toggle" id="themeToggle">
+        <i class="fas fa-moon" id="themeIcon"></i>
     </div>
 
-    <div class="container">
-        <div class="filters">
-            <button class="filter-btn active" data-filter="all">All Gallery</button>
-            <button class="filter-btn" data-filter="worship">Worship Services</button>
-            <button class="filter-btn" data-filter="events">Church Events</button>
-            <button class="filter-btn" data-filter="community">Community</button>
-            <button class="filter-btn" data-filter="ministry">Ministries</button>
-        </div>
-
-        <div class="gallery" id="gallery">
-            <!-- Worship Services -->
-            <div class="gallery-item" data-category="worship">
-                <img src="wall.jpg" alt="Sunday Service">
-                <div class="item-overlay">
-                    <div class="item-title">Sunday Worship</div>
-                    <div class="item-category">Worship Service</div>
-                </div>
+    <!-- Gallery Section -->
+    <section class="gallery-section">
+        <div class="container">
+            <div class="section-header">
+                <h1>Our Gallery</h1>
+                <p>Capturing moments of worship, fellowship, and community impact at CAC GOODWORKS ASSEMBLY</p>
             </div>
 
-            <div class="gallery-item" data-category="worship">
-                <video src="preachig.mp4" autoplay muted controls width="300px" height="290px" alt="Choir Singing">
-                <div class="item-overlay">
-                    <div class="item-title">Choir Performance</div>
-                    <div class="item-category">Worship Service</div>
-                </div>
+            <!-- Category Filters -->
+            <div class="gallery-filters">
+                <button class="filter-btn active" data-filter="all">All Photos</button>
+                <button class="filter-btn" data-filter="worship">Worship Services</button>
+                <button class="filter-btn" data-filter="events">Events & Gatherings</button>
+                <button class="filter-btn" data-filter="outreach">Community Outreach</button>
+                <button class="filter-btn" data-filter="youth">Youth & Children</button>
+                <button class="filter-btn" data-filter="building">Church Building</button>
             </div>
 
-            <!-- Church Events -->
-            <div class="gallery-item" data-category="events">
-                <video src="prayer.mp4" autoplay muted controls width="300px" height="290px">
-                <div class="item-overlay">
-                    <div class="item-title">Baptism Service</div>
-                    <div class="item-category">Church Event</div>
-                </div>
+            <!-- Gallery Grid -->
+            <div class="gallery-grid" id="galleryGrid">
+                <!-- Gallery items will be populated by JavaScript -->
             </div>
 
-            <div class="gallery-item" data-category="events">
-                <img src="pic.jpg" alt="Christmas Event">
-                <div class="item-overlay">
-                    <div class="item-title">Christmas Celebration</div>
-                    <div class="item-category">Church Event</div>
+            <!-- Gallery Statistics -->
+            <div class="gallery-stats">
+                <div class="stat-item">
+                    <div class="stat-number" id="totalPhotos">0</div>
+                    <div class="stat-label">Total Photos</div>
                 </div>
-            </div>
-
-            <!-- Community -->
-            <div class="gallery-item" data-category="community">
-                <img src="leadership.jpg" alt="Community Dinner">
-                <div class="item-overlay">
-                    <div class="item-title">Community Dinner</div>
-                    <div class="item-category">Community</div>
+                <div class="stat-item">
+                    <div class="stat-number" id="eventsCount">0</div>
+                    <div class="stat-label">Events Captured</div>
                 </div>
-            </div>
-
-            <div class="gallery-item" data-category="community">
-                <img src="pict.jpg">
-                <div class="item-overlay">
-                    <div class="item-title">Church Picnic</div>
-                    <div class="item-category">Community</div>
-                </div>
-            </div>
-
-            <!-- Ministries -->
-            <div class="gallery-item" data-category="ministry">
-                <img src="firstsunday.jpg">
-                <div class="item-overlay">
-                    <div class="item-title">Youth Ministry</div>
-                    <div class="item-category">Ministry</div>
-                </div>
-            </div>
-
-            <div class="gallery-item" data-category="ministry">
-                <video src="ayaba.mp4" controls autoplay muted width="300px" height="290px">
-                <div class="item-overlay">
-                    <div class="item-title">Children's Ministry</div>
-                    <div class="item-category">Ministry</div>
-                </div>
-            </div>
-
-            <!-- Additional Items -->
-            <div class="gallery-item" data-category="worship">
-                <video src="video.mp4" controls autoplay muted width="300px" height="290px">
-                <div class="item-overlay">
-                    <div class="item-title">Prayer Night</div>
-                    <div class="item-category">Worship Service</div>
-                </div>
-            </div>
-
-            <div class="gallery-item" data-category="events">
-                <img src="photo.jpg">
-                <div class="item-overlay">
-                    <div class="item-title">Easter Service</div>
-                    <div class="item-category">Church Event</div>
-                </div>
-            </div>
-
-            <div class="gallery-item" data-category="community">
-                <img src="building.jpg">
-                <div class="item-overlay">
-                    <div class="item-title">Community Service</div>
-                    <div class="item-category">Community</div>
-                </div>
-            </div>
-
-            <div class="gallery-item" data-category="ministry">
-                <img src="leadership.jpg" alt="Mission Trip">
-                <div class="item-overlay">
-                    <div class="item-title">Mission Trip</div>
-                    <div class="item-category">Ministry</div>
+                <div class="stat-item">
+                    <div class="stat-number" id="yearsCount">24</div>
+                    <div class="stat-label">Years of Ministry</div>
                 </div>
             </div>
         </div>
-    </div>
+    </section>
 
-    <!-- Lightbox -->
+    <!-- Lightbox Modal -->
     <div class="lightbox" id="lightbox">
-        <div class="close-btn" id="close-btn">
-            <i class="fas fa-times"></i>
-        </div>
-        <div class="prev-btn" id="prev-btn">
-            <i class="fas fa-chevron-left"></i>
-        </div>
-        <div class="next-btn" id="next-btn">
-            <i class="fas fa-chevron-right"></i>
-        </div>
         <div class="lightbox-content">
-            <img src="" alt="" id="lightbox-img">
-            <div class="lightbox-caption" id="lightbox-caption"></div>
+            <div class="lightbox-close">
+                <i class="fas fa-times"></i>
+            </div>
+            <img id="lightboxImage" src="" alt="">
+            <div class="lightbox-info">
+                <h3 id="lightboxTitle"></h3>
+                <p id="lightboxDescription"></p>
+            </div>
+        </div>
+        <div class="lightbox-nav">
+            <button id="prevBtn"><i class="fas fa-chevron-left"></i></button>
+            <button id="nextBtn"><i class="fas fa-chevron-right"></i></button>
         </div>
     </div>
-
-    <footer>
-        <div class="container">
-            <p>&copy; 2025 CAC Goodworks Assembly. All Rights Reserved.</p>
-            <p>Sharing God's Love Through Community and Worship</p>
-        </div>
-    </footer>
 
     <script>
-        // Filter functionality
-        const filterButtons = document.querySelectorAll('.filter-btn');
-        const galleryItems = document.querySelectorAll('.gallery-item');
+        // Gallery Data
+        const galleryData = [
+            // Worship Services
+            {
+                id: 1,
+                title: "Sunday Worship Service",
+                description: "Powerful worship and praise during our Sunday morning service",
+                category: "worship",
+                image: "https://images.unsplash.com/photo-1541557435984-1c79685a082b?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80",
+                date: "2023-07-23"
+            },
+            {
+                id: 2,
+                title: "Choir Ministry",
+                description: "The CAC Goodworks Assembly choir leading worship",
+                category: "worship",
+                image: "https://images.unsplash.com/photo-1519074069444-1ba4fff66d16?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80",
+                date: "2023-07-16"
+            },
+            {
+                id: 3,
+                title: "Praise and Worship",
+                description: "Lifting holy hands in praise to our King",
+                category: "worship",
+                image: "https://images.unsplash.com/photo-1499364615650-ec38552f4f34?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80",
+                date: "2023-07-09"
+            },
+            {
+                id: 4,
+                title: "Prayer Meeting",
+                description: "Early morning prayer and intercession",
+                category: "worship",
+                image: "https://images.unsplash.com/photo-1518391846015-55b9cc003b25?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80",
+                date: "2023-06-28"
+            },
+            // Events & Gatherings
+            {
+                id: 5,
+                title: "Annual Convention 2023",
+                description: "Special convention with guest ministers from around the nation",
+                category: "events",
+                image: "https://images.unsplash.com/photo-1577897109850-6f5c0b71f1b3?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80",
+                date: "2023-06-18"
+            },
+            {
+                id: 6,
+                title: "Fellowship Gathering",
+                description: "Church members fellowship and breaking bread together",
+                category: "events",
+                image: "https://images.unsplash.com/photo-1529070539194-5e32586c09f5?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80",
+                date: "2023-06-11"
+            },
+            {
+                id: 7,
+                title: "Thanksgiving Service",
+                description: "Celebrating God's faithfulness and provision",
+                category: "events",
+                image: "https://images.unsplash.com/photo-1511632765486-a01980e01a18?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80",
+                date: "2023-06-04"
+            },
+            {
+                id: 8,
+                title: "Leadership Conference",
+                description: "Training and equipping church leaders",
+                category: "events",
+                image: "https://images.unsplash.com/photo-1543269865-cbf427effbad?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80",
+                date: "2023-05-28"
+            },
+            // Community Outreach
+            {
+                id: 9,
+                title: "Medical Outreach",
+                description: "Free medical care for the community",
+                category: "outreach",
+                image: "https://images.unsplash.com/photo-1579154204601-01588f351e67?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80",
+                date: "2023-07-15"
+            },
+            {
+                id: 10,
+                title: "Food Distribution",
+                description: "Sharing God's love through practical help",
+                category: "outreach",
+                image: "https://images.unsplash.com/photo-1593113630400-ea4288922493?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80",
+                date: "2023-07-08"
+            },
+            {
+                id: 11,
+                title: "School Donation",
+                description: "Supporting education in our community",
+                category: "outreach",
+                image: "https://images.unsplash.com/photo-1509062522246-3755977927d7?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80",
+                date: "2023-06-25"
+            },
+            {
+                id: 12,
+                title: "Visiting the Elderly",
+                description: "Bringing joy and comfort to the elderly",
+                category: "outreach",
+                image: "https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80",
+                date: "2023-06-18"
+            },
+            // Youth & Children
+            {
+                id: 13,
+                title: "Youth Camp",
+                description: "Empowering the next generation for Christ",
+                category: "youth",
+                image: "https://images.unsplash.com/photo-1501952476817-d7ae22e8ee4e?ixlib=rb-4.0.3&auto=format&fit=crop&w=1469&q=80",
+                date: "2023-07-22"
+            },
+            {
+                id: 14,
+                title: "Children's Church",
+                description: "Fun and engaging lessons about Jesus",
+                category: "youth",
+                image: "https://images.unsplash.com/photo-1579621981033-9dbb4d439c1c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1472&q=80",
+                date: "2023-07-16"
+            },
+            {
+                id: 15,
+                title: "Teenagers Conference",
+                description: "Building character and faith in teens",
+                category: "youth",
+                image: "https://images.unsplash.com/photo-1523240795612-9a054b0db644?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80",
+                date: "2023-07-09"
+            },
+            {
+                id: 16,
+                title: "Vacation Bible School",
+                description: "Summer program for children",
+                category: "youth",
+                image: "https://images.unsplash.com/photo-1503676260728-1c00da094a0b?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80",
+                date: "2023-07-02"
+            },
+            // Church Building
+            {
+                id: 17,
+                title: "Church Exterior",
+                description: "The beautiful sanctuary of CAC Goodworks Assembly",
+                category: "building",
+                image: "https://images.unsplash.com/photo-1518834103328-9d1bcb4c8be3?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80",
+                date: "2023-07-01"
+            },
+            {
+                id: 18,
+                title: "Interior Sanctuary",
+                description: "Where we gather to worship",
+                category: "building",
+                image: "https://images.unsplash.com/photo-1438032945731-e2181479cfcd?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80",
+                date: "2023-06-15"
+            },
+            {
+                id: 19,
+                title: "Fellowship Hall",
+                description: "Place of community and connection",
+                category: "building",
+                image: "https://images.unsplash.com/photo-1577022791915-c8c3e5c2df1c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80",
+                date: "2023-06-01"
+            },
+            {
+                id: 20,
+                title: "Church Grounds",
+                description: "Beautiful landscape and prayer garden",
+                category: "building",
+                image: "https://images.unsplash.com/photo-1518005020951-eccb494ad742?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80",
+                date: "2023-05-15"
+            },
+            // Additional Worship
+            {
+                id: 21,
+                title: "Baptism Service",
+                description: "Celebrating new life in Christ",
+                category: "worship",
+                image: "https://images.unsplash.com/photo-1518834103328-9d1bcb4c8be3?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80",
+                date: "2023-07-30"
+            },
+            {
+                id: 22,
+                title: "Christmas Celebration",
+                description: "Celebrating the birth of our Savior",
+                category: "events",
+                image: "https://images.unsplash.com/photo-1548266652-99cf27701dec?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80",
+                date: "2022-12-25"
+            },
+            {
+                id: 23,
+                title: "Easter Sunrise Service",
+                description: "Celebrating the resurrection of Jesus",
+                category: "worship",
+                image: "https://images.unsplash.com/photo-1503443207922-dff7d543fd0e?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80",
+                date: "2023-04-09"
+            },
+            {
+                id: 24,
+                title: "Missions Trip",
+                description: "Sharing the Gospel in rural communities",
+                category: "outreach",
+                image: "https://images.unsplash.com/photo-1537047902294-62a40c20a6ae?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80",
+                date: "2023-05-20"
+            }
+        ];
 
-        filterButtons.forEach(button => {
-            button.addEventListener('click', () => {
-                // Remove active class from all buttons
-                filterButtons.forEach(btn => btn.classList.remove('active'));
-                
-                // Add active class to clicked button
-                button.classList.add('active');
-                
-                const filter = button.getAttribute('data-filter');
-                
-                galleryItems.forEach(item => {
-                    if (filter === 'all' || item.getAttribute('data-category') === filter) {
-                        item.style.display = 'block';
-                    } else {
-                        item.style.display = 'none';
-                    }
+        // DOM Elements
+        const galleryGrid = document.getElementById('galleryGrid');
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImage = document.getElementById('lightboxImage');
+        const lightboxTitle = document.getElementById('lightboxTitle');
+        const lightboxDescription = document.getElementById('lightboxDescription');
+        const prevBtn = document.getElementById('prevBtn');
+        const nextBtn = document.getElementById('nextBtn');
+        const filterBtns = document.querySelectorAll('.filter-btn');
+        const totalPhotosSpan = document.getElementById('totalPhotos');
+        const eventsCountSpan = document.getElementById('eventsCount');
+
+        let currentFilter = 'all';
+        let currentLightboxIndex = 0;
+        let filteredItems = [];
+
+        // Render Gallery
+        function renderGallery() {
+            let filteredData = galleryData;
+            
+            if (currentFilter !== 'all') {
+                filteredData = galleryData.filter(item => item.category === currentFilter);
+            }
+            
+            filteredItems = filteredData;
+            
+            // Update statistics
+            totalPhotosSpan.textContent = filteredData.length;
+            const eventsCount = filteredData.filter(item => item.category === 'events').length;
+            eventsCountSpan.textContent = eventsCount;
+            
+            // Generate HTML
+            galleryGrid.innerHTML = filteredData.map((item, index) => `
+                <div class="gallery-item" data-id="${item.id}" data-index="${index}" style="animation-delay: ${index * 0.05}s">
+                    <div class="gallery-item-image">
+                        <img src="${item.image}" alt="${item.title}" loading="lazy">
+                        <div class="gallery-category-badge">
+                            ${getCategoryName(item.category)}
+                        </div>
+                    </div>
+                    <div class="gallery-overlay">
+                        <h3>${item.title}</h3>
+                        <p>${item.description}</p>
+                        <span class="view-btn">View Photo <i class="fas fa-arrow-right"></i></span>
+                    </div>
+                </div>
+            `).join('');
+            
+            // Add click event listeners to gallery items
+            document.querySelectorAll('.gallery-item').forEach(item => {
+                item.addEventListener('click', (e) => {
+                    const index = parseInt(item.dataset.index);
+                    openLightbox(index);
                 });
             });
-        });
-
-        // Lightbox functionality
-        const lightbox = document.getElementById('lightbox');
-        const lightboxImg = document.getElementById('lightbox-img');
-        const lightboxCaption = document.getElementById('lightbox-caption');
-        const closeBtn = document.getElementById('close-btn');
-        const prevBtn = document.getElementById('prev-btn');
-        const nextBtn = document.getElementById('next-btn');
-
-        let currentIndex = 0;
-        const items = Array.from(galleryItems);
-
-        // Open lightbox
-        galleryItems.forEach((item, index) => {
-            item.addEventListener('click', () => {
-                currentIndex = index;
-                updateLightbox();
-                lightbox.style.display = 'flex';
-                document.body.style.overflow = 'hidden'; // Prevent scrolling
+        }
+        
+        function getCategoryName(category) {
+            const categories = {
+                worship: 'Worship',
+                events: 'Events',
+                outreach: 'Outreach',
+                youth: 'Youth',
+                building: 'Building'
+            };
+            return categories[category] || category;
+        }
+        
+        // Open Lightbox
+        function openLightbox(index) {
+            currentLightboxIndex = index;
+            const item = filteredItems[index];
+            lightboxImage.src = item.image;
+            lightboxTitle.textContent = item.title;
+            lightboxDescription.textContent = `${item.description} • ${formatDate(item.date)}`;
+            lightbox.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+        
+        // Close Lightbox
+        function closeLightbox() {
+            lightbox.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+        
+        // Navigate Lightbox
+        function nextImage() {
+            currentLightboxIndex = (currentLightboxIndex + 1) % filteredItems.length;
+            openLightbox(currentLightboxIndex);
+        }
+        
+        function prevImage() {
+            currentLightboxIndex = (currentLightboxIndex - 1 + filteredItems.length) % filteredItems.length;
+            openLightbox(currentLightboxIndex);
+        }
+        
+        // Format Date
+        function formatDate(dateString) {
+            const date = new Date(dateString);
+            return date.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+        }
+        
+        // Filter Function
+        function setFilter(filter) {
+            currentFilter = filter;
+            renderGallery();
+            
+            // Update active button state
+            filterBtns.forEach(btn => {
+                if (btn.dataset.filter === filter) {
+                    btn.classList.add('active');
+                } else {
+                    btn.classList.remove('active');
+                }
+            });
+        }
+        
+        // Event Listeners
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                setFilter(btn.dataset.filter);
             });
         });
-
-        // Close lightbox
-        closeBtn.addEventListener('click', () => {
-            lightbox.style.display = 'none';
-            document.body.style.overflow = 'auto'; // Enable scrolling
-        });
-
-        // Navigate lightbox
-        prevBtn.addEventListener('click', () => {
-            currentIndex = (currentIndex - 1 + items.length) % items.length;
-            updateLightbox();
-        });
-
-        nextBtn.addEventListener('click', () => {
-            currentIndex = (currentIndex + 1) % items.length;
-            updateLightbox();
-        });
-
-        // Keyboard navigation
-        document.addEventListener('keydown', (e) => {
-            if (lightbox.style.display === 'flex') {
-                if (e.key === 'Escape') {
-                    lightbox.style.display = 'none';
-                    document.body.style.overflow = 'auto';
-                } else if (e.key === 'ArrowLeft') {
-                    currentIndex = (currentIndex - 1 + items.length) % items.length;
-                    updateLightbox();
-                } else if (e.key === 'ArrowRight') {
-                    currentIndex = (currentIndex + 1) % items.length;
-                    updateLightbox();
-                }
+        
+        document.querySelector('.lightbox-close').addEventListener('click', closeLightbox);
+        nextBtn.addEventListener('click', nextImage);
+        prevBtn.addEventListener('click', prevImage);
+        
+        lightbox.addEventListener('click', (e) => {
+            if (e.target === lightbox) {
+                closeLightbox();
             }
         });
-
-        // Update lightbox content
-        function updateLightbox() {
-            const item = items[currentIndex];
-            const img = item.querySelector('img');
-            const title = item.querySelector('.item-title').textContent;
-            const category = item.querySelector('.item-category').textContent;
+        
+        // Keyboard navigation
+        document.addEventListener('keydown', (e) => {
+            if (!lightbox.classList.contains('active')) return;
             
-            lightboxImg.src = img.src;
-            lightboxCaption.textContent = `${title} - ${category}`;
+            if (e.key === 'ArrowRight') {
+                nextImage();
+            } else if (e.key === 'ArrowLeft') {
+                prevImage();
+            } else if (e.key === 'Escape') {
+                closeLightbox();
+            }
+        });
+        
+        // Theme Toggle Functionality
+        const themeToggle = document.getElementById('themeToggle');
+        const themeIcon = document.getElementById('themeIcon');
+        const htmlElement = document.documentElement;
+        
+        const savedTheme = localStorage.getItem('theme') || 'light';
+        htmlElement.setAttribute('data-theme', savedTheme);
+        
+        function updateThemeIcon(theme) {
+            if (theme === 'dark') {
+                themeIcon.className = 'fas fa-sun';
+                themeToggle.style.backgroundColor = '#FFD966';
+            } else {
+                themeIcon.className = 'fas fa-moon';
+                themeToggle.style.backgroundColor = '#8B4513';
+            }
         }
+        
+        updateThemeIcon(savedTheme);
+        
+        themeToggle.addEventListener('click', () => {
+            const currentTheme = htmlElement.getAttribute('data-theme');
+            const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+            
+            htmlElement.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+            updateThemeIcon(newTheme);
+        });
+        
+        // Initialize Gallery
+        renderGallery();
+        
+        // Add smooth scroll animation
+        window.addEventListener('load', () => {
+            const items = document.querySelectorAll('.gallery-item');
+            items.forEach((item, index) => {
+                item.style.opacity = '1';
+                item.style.transform = 'translateY(0)';
+            });
+        });
+        
+        // Lazy loading images
+        const imageObserver = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const img = entry.target;
+                    img.src = img.dataset.src || img.src;
+                    observer.unobserve(img);
+                }
+            });
+        });
+        
+        document.querySelectorAll('.gallery-item-image img').forEach(img => {
+            imageObserver.observe(img);
+        });
     </script>
 </body>
-
 </html>
-
-
-
-
-
-
